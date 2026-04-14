@@ -15,7 +15,7 @@
 
 ---
 
-> Built with ❤️ by **[Zain Raza Jafri](https://linkedin.com/in/zainjafri4)**  
+> Built by **[Zain Raza Jafri](https://linkedin.com/in/zainjafri4)**  
 > 🐙 [github.com/zainjafri4](https://github.com/zainjafri4) · 💼 [linkedin.com/in/zainjafri4](https://linkedin.com/in/zainjafri4)
 
 </div>
