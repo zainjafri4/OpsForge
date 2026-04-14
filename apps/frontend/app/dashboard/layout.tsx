@@ -19,9 +19,9 @@ import {
 
 const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
-  { name: 'Learn', href: '/learn', icon: BookOpenIcon },
-  { name: 'Test', href: '/test', icon: ClipboardListIcon },
-  { name: 'Results', href: '/results', icon: BarChart },
+  { name: 'Learn', href: '/dashboard/learn', icon: BookOpenIcon },
+  { name: 'Test', href: '/dashboard/test', icon: ClipboardListIcon },
+  { name: 'Results', href: '/dashboard/results', icon: BarChart },
 ];
 
 export default function DashboardLayout({

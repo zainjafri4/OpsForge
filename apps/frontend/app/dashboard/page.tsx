@@ -27,14 +27,16 @@ export default function DashboardPage() {
   }
 
   // Prepare chart data (last 10 tests, reverse chronological order)
-  const chartData = resultsHistory
-    ?.slice(0, 10)
-    .reverse()
-    .map((result, index) => ({
-      name: `Test ${index + 1}`,
-      score: result.score,
-      date: formatDate(result.createdAt),
-    })) || [];
+  const chartData = Array.isArray(resultsHistory)
+    ? resultsHistory
+        .slice(0, 10)
+        .reverse()
+        .map((result, index) => ({
+          name: `Test ${index + 1}`,
+          score: result.score,
+          date: formatDate(result.createdAt),
+        }))
+    : [];
 
   return (
     <div className="space-y-8">
@@ -111,13 +113,13 @@ export default function DashboardPage() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-4">
-            <Link href="/test">
+            <Link href="/dashboard/test">
               <Button size="lg">
                 <ClipboardListIcon className="w-5 h-5 mr-2" />
                 Start Test
               </Button>
             </Link>
-            <Link href="/learn">
+            <Link href="/dashboard/learn">
               <Button size="lg" variant="outline">
                 <TrophyIcon className="w-5 h-5 mr-2" />
                 Browse Topics
@@ -178,7 +180,7 @@ export default function DashboardPage() {
           <CardDescription>Your performance across different topics</CardDescription>
         </CardHeader>
         <CardContent>
-          {!progress || progress.length === 0 ? (
+          {!progress || !Array.isArray(progress) || progress.length === 0 ? (
             <div className="text-center py-8 text-gray-500">
               <p>No progress yet. Start a test to begin!</p>
             </div>

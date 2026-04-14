@@ -64,7 +64,7 @@ export default function ResultDetailPage() {
     return (
       <div className="flex flex-col items-center justify-center h-64">
         <div className="text-gray-500 mb-4">Result not found</div>
-        <Link href="/results">
+        <Link href="/dashboard/results">
           <Button variant="outline">
             <ArrowLeftIcon className="w-4 h-4 mr-2" />
             Back to Results
@@ -85,7 +85,7 @@ export default function ResultDetailPage() {
     >
       {/* Breadcrumb */}
       <Link
-        href="/results"
+        href="/dashboard/results"
         className="text-sm text-indigo-600 hover:underline flex items-center"
       >
         <ArrowLeftIcon className="w-4 h-4 mr-1" />
@@ -231,13 +231,13 @@ export default function ResultDetailPage() {
         <Card>
         <CardContent className="pt-6">
           <div className="flex flex-wrap gap-4 justify-center">
-            <Link href="/test">
+            <Link href="/dashboard/test">
               <Button size="lg">
                 <TrophyIcon className="w-5 h-5 mr-2" />
                 Take Another Test
               </Button>
             </Link>
-            <Link href="/learn">
+            <Link href="/dashboard/learn">
               <Button size="lg" variant="outline">
                 Review Topics
               </Button>

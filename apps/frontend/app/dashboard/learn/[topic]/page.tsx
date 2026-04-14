@@ -30,7 +30,7 @@ export default function TopicDetailPage() {
     return (
       <div className="flex flex-col items-center justify-center h-64">
         <div className="text-gray-500 mb-4">Topic not found</div>
-        <Link href="/learn">
+        <Link href="/dashboard/learn">
           <Button variant="outline">
             <ArrowLeftIcon className="w-4 h-4 mr-2" />
             Back to Topics
@@ -45,7 +45,7 @@ export default function TopicDetailPage() {
       {/* Breadcrumb */}
       <div>
         <Link
-          href="/learn"
+          href="/dashboard/learn"
           className="text-sm text-indigo-600 hover:underline flex items-center mb-4"
         >
           <ArrowLeftIcon className="w-4 h-4 mr-1" />
@@ -71,7 +71,7 @@ export default function TopicDetailPage() {
               </div>
             </div>
           </div>
-          <Link href={`/test?topic=${slug}`}>
+          <Link href={`/dashboard/test?topic=${slug}`}>
             <Button size="lg">
               <PlayIcon className="w-5 h-5 mr-2" />
               Start Test
@@ -105,7 +105,7 @@ export default function TopicDetailPage() {
                   Start a test to practice {selectedDifficulty.toLowerCase()} questions on this
                   topic
                 </p>
-                <Link href={`/test?topic=${slug}&difficulty=${selectedDifficulty}`}>
+                <Link href={`/dashboard/test?topic=${slug}&difficulty=${selectedDifficulty}`}>
                   <Button className="mt-4">
                     <PlayIcon className="w-4 h-4 mr-2" />
                     Start {selectedDifficulty} Test

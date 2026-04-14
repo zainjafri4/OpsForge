@@ -54,7 +54,7 @@ export default function LearnPage() {
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {categoryTopics.map((topic) => (
-                <Link key={topic.id} href={`/learn/${topic.slug}`}>
+                <Link key={topic.id} href={`/dashboard/learn/${topic.slug}`}>
                   <Card className="h-full hover:shadow-lg transition-all hover:scale-105 cursor-pointer group">
                     <CardHeader>
                       <div className="flex items-start justify-between">

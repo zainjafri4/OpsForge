@@ -28,7 +28,7 @@ export default function ResultsHistoryPage() {
             Review your past test performances
           </p>
         </div>
-        <Link href="/test">
+        <Link href="/dashboard/test">
           <Button>
             <TrophyIcon className="w-4 h-4 mr-2" />
             New Test
@@ -40,7 +40,7 @@ export default function ResultsHistoryPage() {
         <Card>
           <CardContent className="pt-12 pb-12 text-center">
             <p className="text-gray-500 mb-4">No test results yet</p>
-            <Link href="/test">
+            <Link href="/dashboard/test">
               <Button>Take Your First Test</Button>
             </Link>
           </CardContent>
@@ -76,7 +76,7 @@ export default function ResultsHistoryPage() {
                       <span>{formatDate(result.createdAt)}</span>
                     </div>
                   </div>
-                  <Link href={`/results/${result.id}`}>
+                  <Link href={`/dashboard/results/${result.id}`}>
                     <Button variant="outline">
                       <EyeIcon className="w-4 h-4 mr-2" />
                       View Details
