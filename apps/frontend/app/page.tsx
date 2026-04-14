@@ -83,7 +83,7 @@ export default function Home() {
               </Button>
             </motion.div>
           </Link>
-          <Link href="/learn">
+          <Link href="/dashboard/learn">
             <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
               <Button size="lg" variant="outline" className="text-lg px-8 py-6">
                 View Topics
