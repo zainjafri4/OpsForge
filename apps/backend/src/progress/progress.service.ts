@@ -92,4 +92,43 @@ export class ProgressService {
       scoreHistory: last10.reverse(),
     };
   }
+
+  async getWeakTopics(userId: string) {
+    const progress = await this.prisma.userProgress.findMany({
+      where: { userId },
+      include: { topic: { select: { id: true, slug: true, title: true, icon: true } } },
+    });
+
+    const topicScores = progress.map((p) => {
+      const totalAttempted = p.easyAttempted + p.mediumAttempted + p.hardAttempted;
+      const totalCorrect = p.easyCorrect + p.mediumCorrect + p.hardCorrect;
+      const accuracy = totalAttempted > 0 ? Math.round((totalCorrect / totalAttempted) * 100) : null;
+
+      return {
+        topic: p.topic,
+        totalAttempted,
+        totalCorrect,
+        accuracy,
+        easyAccuracy: p.easyAttempted > 0 ? Math.round((p.easyCorrect / p.easyAttempted) * 100) : null,
+        mediumAccuracy: p.mediumAttempted > 0 ? Math.round((p.mediumCorrect / p.mediumAttempted) * 100) : null,
+        hardAccuracy: p.hardAttempted > 0 ? Math.round((p.hardCorrect / p.hardAttempted) * 100) : null,
+      };
+    });
+
+    const weakTopics = topicScores
+      .filter((t) => t.accuracy !== null && t.accuracy < 70 && t.totalAttempted >= 3)
+      .sort((a, b) => (a.accuracy || 0) - (b.accuracy || 0))
+      .slice(0, 5);
+
+    const strongTopics = topicScores
+      .filter((t) => t.accuracy !== null && t.accuracy >= 80 && t.totalAttempted >= 3)
+      .sort((a, b) => (b.accuracy || 0) - (a.accuracy || 0))
+      .slice(0, 5);
+
+    return {
+      weakTopics,
+      strongTopics,
+      allTopicScores: topicScores.filter((t) => t.totalAttempted > 0).sort((a, b) => (a.accuracy || 0) - (b.accuracy || 0)),
+    };
+  }
 }

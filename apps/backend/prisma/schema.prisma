@@ -20,6 +20,7 @@ model User {
 
   testSessions TestSession[]
   progress     UserProgress[]
+  bookmarks    Bookmark[]
 }
 
 model Topic {
@@ -57,6 +58,7 @@ model Question {
 
   testAnswers      TestAnswer[]
   sessionQuestions SessionQuestion[]
+  bookmarks        Bookmark[]
 }
 
 enum Difficulty {
@@ -72,8 +74,9 @@ enum QuestionType {
 
 model TestSession {
   id          String        @id @default(uuid())
-  userId      String
-  user        User          @relation(fields: [userId], references: [id])
+  userId      String?
+  user        User?         @relation(fields: [userId], references: [id])
+  guestToken  String?       @unique
   difficulty  Difficulty
   topicFilter String[]
   typeFilter  String?
@@ -140,4 +143,15 @@ model UserProgress {
   lastAttemptedAt  DateTime?
 
   @@unique([userId, topicId])
+}
+
+model Bookmark {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id])
+  questionId String
+  question   Question @relation(fields: [questionId], references: [id])
+  createdAt  DateTime @default(now())
+
+  @@unique([userId, questionId])
 }

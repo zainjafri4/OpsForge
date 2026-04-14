@@ -98,4 +98,73 @@ export class ResultsService {
       },
     };
   }
+
+  async findOnePublic(resultId: string, guestToken: string) {
+    const result = await this.prisma.testResult.findUnique({
+      where: { id: resultId },
+      include: {
+        session: {
+          include: {
+            answers: {
+              include: {
+                question: {
+                  include: { topic: { select: { slug: true, title: true, icon: true } } },
+                },
+              },
+            },
+            sessionQuestions: true,
+          },
+        },
+      },
+    });
+
+    if (!result) throw new NotFoundException('Result not found');
+    if (result.session.guestToken !== guestToken) throw new ForbiddenException('Invalid guest token');
+
+    const wrongAndSkipped = result.session.answers.filter(
+      (a) => !a.isCorrect,
+    );
+
+    const reviewItems = wrongAndSkipped.map((answer) => {
+      const sq = result.session.sessionQuestions.find(
+        (sq) => sq.questionId === answer.questionId,
+      );
+
+      const yourAnswer =
+        answer.selectedIndex !== null && answer.selectedIndex !== undefined
+          ? sq?.shuffledOptions[answer.selectedIndex] ?? 'Skipped'
+          : 'Skipped';
+
+      const correctAnswer = sq
+        ? sq.shuffledOptions[sq.shuffledCorrectIndex]
+        : answer.question.options[answer.question.correctIndex];
+
+      return {
+        questionId: answer.question.id,
+        question: answer.question.question,
+        type: answer.question.type,
+        difficulty: answer.question.difficulty,
+        topic: answer.question.topic,
+        yourAnswer,
+        correctAnswer,
+        explanation: answer.question.explanation,
+        wasSkipped: answer.selectedIndex === null || answer.selectedIndex === undefined,
+      };
+    });
+
+    return {
+      id: result.id,
+      sessionId: result.sessionId,
+      score: result.score,
+      correctCount: result.correctCount,
+      wrongCount: result.wrongCount,
+      skippedCount: result.skippedCount,
+      timeTaken: result.timeTaken,
+      difficulty: result.session.difficulty,
+      createdAt: result.createdAt,
+      reviewItems,
+      isGuest: true,
+      message: 'Sign up to save your progress and track your performance over time!',
+    };
+  }
 }

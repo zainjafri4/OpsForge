@@ -1,6 +1,6 @@
 <div align="center">
 
-# 🔨 OpsForge
+# ⚙️ OpsForge
 
 ### Forge Your Cloud, DevOps & SRE Interview Skills
 
@@ -13,122 +13,150 @@
 
 **300+ real interview questions · 12 topics · Easy / Medium / Hard · AWS focused**
 
+🎯 **No signup required to practice!** Take tests instantly and see your results.
+
+[Try It Now](https://opsforge.vercel.app/test) · [Browse Topics](https://opsforge.vercel.app/topics) · [View Demo](https://opsforge.vercel.app)
+
 ---
 
 > Built by **[Zain Raza Jafri](https://linkedin.com/in/zainjafri4)**  
-> 🐙 [github.com/zainjafri4](https://github.com/zainjafri4) · 💼 [linkedin.com/in/zainjafri4](https://linkedin.com/in/zainjafri4)
+> 🐙 [GitHub](https://github.com/zainjafri4) · 💼 [LinkedIn](https://linkedin.com/in/zainjafri4)
 
 </div>
 
 ---
 
-## 📖 Table of Contents
-- [Features](#-features)
-- [Tech Stack](#-tech-stack)
-- [Topics Covered](#️-topics-covered)
-- [Getting Started](#-getting-started)
-- [Environment Variables](#-environment-variables)
-- [API Documentation](#-api-documentation)
-- [Project Structure](#-project-structure)
-- [Key Features](#-key-features-in-detail)
-- [Deployment](#-deployment)
-- [Contributing](#-contributing)
+## 🆕 What's New
+
+| Feature | Description |
+|---------|-------------|
+| 🆓 **Guest Mode** | Practice without signing up - take tests and see results instantly |
+| ⏱️ **Timed Practice** | Race against the clock with configurable time limits |
+| 🎯 **Mock Interview Mode** | 45-minute simulation with all topics at hard difficulty |
+| 🃏 **Flashcard Mode** | Flip-card UI for stress-free review |
+| 🔖 **Question Bookmarking** | Save difficult questions for later review |
+| 📊 **Weak Topic Detection** | AI-powered analysis of your performance gaps |
+| 🏗️ **Custom Test Builder** | Pick specific topics and question counts |
 
 ---
 
 ## ✨ Features
 
+### For Everyone (No Login Required)
 | Feature | Description |
 |---------|-------------|
-| 📚 **Structured Learning** | 12 topics with Easy, Medium, Hard theory + scenario content |
-| 🧪 **Randomized Tests** | 20-question tests with fully randomized questions and option order |
-| 🔍 **Wrong Answer Review** | Detailed explanations for every wrong answer after submission |
-| 📊 **Progress Tracking** | Per-topic progress tracking across all difficulty levels |
-| 🔐 **JWT Auth** | Secure access + refresh token flow with bcrypt password hashing |
-| 🌓 **Dark Mode** | Full dark/light mode support with system preference detection |
-| 📱 **Responsive** | Mobile-first design, works on all screen sizes |
-| ⚡ **Real-time Timer** | Countdown timer on quizzes with auto-submit |
-| 🏆 **Score History** | Track your improvement over time with trend charts |
+| 🧪 **Practice Tests** | Take 20-question tests from any topic instantly |
+| 📚 **Topic Browser** | Explore all 12 topics with question counts |
+| 🎯 **Mixed or Focused** | General mixed tests or topic-specific practice |
+| 📝 **Instant Results** | See your score and review wrong answers |
+| 🃏 **Flashcards** | Review questions without test pressure |
+
+### For Registered Users
+| Feature | Description |
+|---------|-------------|
+| 📊 **Progress Tracking** | Track performance across all topics and difficulties |
+| 📈 **Score History** | Visualize your improvement over time |
+| 🔖 **Bookmarks** | Save questions to review later |
+| 🎯 **Weak Topic Analysis** | See which areas need more practice |
+| 🏆 **Streak Tracking** | Maintain daily practice streaks |
+
+### Practice Modes
+| Mode | Description |
+|------|-------------|
+| 📖 **Practice** | No timer - learn at your own pace |
+| ⏱️ **Timed** | 10/15/20/30 minute options with countdown |
+| 🎯 **Mock Interview** | 45 min, all topics, hard difficulty only |
 
 ---
 
 ## 🛠 Tech Stack
 
+<table>
+<tr>
+<td valign="top" width="50%">
+
 ### Backend
-- **NestJS** — Modular Node.js framework with TypeScript
-- **Prisma** — Type-safe ORM with PostgreSQL
-- **JWT** — Access (15m) + Refresh (7d) token strategy
-- **Swagger** — Auto-generated API docs at `/api/docs`
-- **bcrypt** — Password hashing with salt rounds = 12
-- **Helmet + Throttler** — Security middleware
+- **NestJS** — Modular Node.js framework
+- **Prisma** — Type-safe PostgreSQL ORM
+- **JWT** — Access + Refresh token auth
+- **Swagger** — Auto-generated API docs
+- **bcrypt** — Secure password hashing
+- **Helmet + CORS** — Security middleware
+
+</td>
+<td valign="top" width="50%">
 
 ### Frontend
-- **Next.js 14** — App Router with Server Components
-- **Tailwind CSS + shadcn/ui** — Utility-first styling
-- **Zustand** — Lightweight global state management
-- **TanStack Query** — Server state with caching
-- **Framer Motion** — Smooth animations
-- **Recharts** — Progress visualization
+- **Next.js 14** — App Router
+- **Tailwind CSS** — Utility-first styling
+- **shadcn/ui** — Beautiful components
+- **Zustand** — State management
+- **TanStack Query** — Server state
+- **Framer Motion** — Animations
+
+</td>
+</tr>
+</table>
 
 ---
 
 ## 🗂️ Topics Covered
 
-| # | Topic | Easy | Medium | Hard |
-|---|-------|------|--------|------|
-| 1 | 🐧 Linux & Shell | ✅ | ✅ | ✅ |
-| 2 | 🌐 Networking | ✅ | ✅ | ✅ |
-| 3 | ☁️ AWS Core (EC2, S3, VPC, IAM) | ✅ | ✅ | ✅ |
-| 4 | ⚡ AWS Advanced (Lambda, EKS, RDS) | ✅ | ✅ | ✅ |
-| 5 | 🐳 Docker | ✅ | ✅ | ✅ |
-| 6 | ☸️ Kubernetes | ✅ | ✅ | ✅ |
-| 7 | 🔄 CI/CD | ✅ | ✅ | ✅ |
-| 8 | 🏗️ Terraform / IaC | ✅ | ✅ | ✅ |
-| 9 | 📡 Observability | ✅ | ✅ | ✅ |
-| 10 | 🔧 SRE Practices | ✅ | ✅ | ✅ |
-| 11 | 🔒 Security | ✅ | ✅ | ✅ |
-| 12 | 💰 FinOps | ✅ | ✅ | ✅ |
+| # | Topic | Icon | Questions | Difficulty |
+|---|-------|------|-----------|------------|
+| 1 | Linux & Shell | 🐧 | 20+ | Easy / Medium / Hard |
+| 2 | Networking | 🌐 | 20+ | Easy / Medium / Hard |
+| 3 | AWS Core | ☁️ | 25+ | Easy / Medium / Hard |
+| 4 | AWS Advanced | ⚡ | 20+ | Easy / Medium / Hard |
+| 5 | Docker | 🐳 | 25+ | Easy / Medium / Hard |
+| 6 | Kubernetes | ☸️ | 25+ | Easy / Medium / Hard |
+| 7 | CI/CD | 🔄 | 20+ | Easy / Medium / Hard |
+| 8 | Terraform / IaC | 🏗️ | 20+ | Easy / Medium / Hard |
+| 9 | Observability | 📡 | 20+ | Easy / Medium / Hard |
+| 10 | SRE Practices | 🔧 | 20+ | Easy / Medium / Hard |
+| 11 | Security | 🔒 | 20+ | Easy / Medium / Hard |
+| 12 | FinOps | 💰 | 15+ | Easy / Medium / Hard |
 
 ---
 
-## 🚀 Getting Started
+## 🚀 Quick Start
 
-### Prerequisites
-- Node.js 18+
-- PostgreSQL 15+ (or Docker)
-- npm or pnpm
+### Try Without Installing
 
-### Installation
+Visit [opsforge.vercel.app/test](https://opsforge.vercel.app/test) and start practicing immediately!
+
+### Local Development
 
 ```bash
 # Clone the repo
-git clone https://github.com/zainjafri4/devops-interview-forge.git
-cd devops-interview-forge
+git clone https://github.com/zainjafri4/OpsForge.git
+cd OpsForge
 
-# Start PostgreSQL with Docker (recommended)
+# Start PostgreSQL with Docker
 docker-compose up -d
 
 # Backend setup
 cd apps/backend
 cp .env.example .env
 npm install
-npx prisma migrate dev --name init
-npx prisma db seed      # Seeds 300+ questions
+npx prisma db push
+npx prisma db seed
 
 # Frontend setup
 cd ../frontend
 cp .env.example .env.local
 npm install
 
-# Run both
-# Terminal 1 (backend):
+# Run both (in separate terminals)
 cd apps/backend && npm run start:dev
-# Terminal 2 (frontend):
 cd apps/frontend && npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to view the app.
-Backend runs on [http://localhost:3001](http://localhost:3001).
+| Service | URL |
+|---------|-----|
+| Frontend | http://localhost:3000 |
+| Backend API | http://localhost:3001 |
+| Swagger Docs | http://localhost:3001/api/docs |
 
 ---
 
@@ -136,7 +164,7 @@ Backend runs on [http://localhost:3001](http://localhost:3001).
 
 ### Backend `.env`
 ```env
-DATABASE_URL="postgresql://postgres:password@localhost:5432/devops_forge"
+DATABASE_URL="postgresql://postgres:password@localhost:5432/opsforge"
 JWT_SECRET="your-super-secret-jwt-key-minimum-32-chars"
 JWT_REFRESH_SECRET="your-refresh-secret-minimum-32-chars"
 JWT_EXPIRES_IN="15m"
@@ -152,136 +180,123 @@ NEXT_PUBLIC_API_URL="http://localhost:3001"
 
 ---
 
-## 📡 API Documentation
-
-Once the backend is running, visit: `http://localhost:3001/api/docs`
-
-Swagger UI with all endpoints fully documented including request/response schemas.
-
----
-
 ## 📁 Project Structure
 
 ```
-devops-interview-forge/
+OpsForge/
 ├── apps/
-│   ├── backend/          # NestJS API
+│   ├── backend/              # NestJS API
 │   │   ├── src/
-│   │   │   ├── auth/     # JWT auth with refresh tokens
-│   │   │   ├── users/    # User profile management
-│   │   │   ├── topics/   # Topic browsing
-│   │   │   ├── questions/# Question retrieval
-│   │   │   ├── tests/    # Test session management
-│   │   │   ├── results/  # Result retrieval and review
-│   │   │   └── progress/ # User progress tracking
+│   │   │   ├── auth/         # JWT authentication
+│   │   │   ├── bookmarks/    # Question bookmarking
+│   │   │   ├── progress/     # User progress & analytics
+│   │   │   ├── results/      # Test results & review
+│   │   │   ├── tests/        # Test session management
+│   │   │   └── topics/       # Topic & question management
 │   │   └── prisma/
-│   │       ├── schema.prisma
-│   │       └── seed.ts   # 300+ interview questions
-│   └── frontend/         # Next.js 14 App
-│       ├── app/          # App Router pages
-│       ├── components/   # Reusable UI components
-│       ├── store/        # Zustand state
-│       ├── hooks/        # Custom React hooks
-│       └── lib/          # Utilities and API client
+│   │       └── seed-data/    # 300+ interview questions
+│   └── frontend/             # Next.js 14 App
+│       ├── app/
+│       │   ├── dashboard/    # Authenticated user pages
+│       │   ├── flashcards/   # Flashcard mode
+│       │   ├── test/         # Public test flow
+│       │   └── topics/       # Public topic browser
+│       ├── components/       # Reusable UI
+│       ├── hooks/            # Custom React hooks
+│       └── store/            # Zustand state
 ├── docker-compose.yml
 └── README.md
 ```
 
 ---
 
-## 🎯 Key Features in Detail
+## 🎯 Feature Comparison
 
-### 🔐 Authentication & Security
-- **JWT Strategy**: Access tokens (15 min) + Refresh tokens (7 days)
-- **bcrypt Hashing**: Password security with salt rounds = 12
-- **Helmet Middleware**: Secure HTTP headers
-- **Rate Limiting**: Throttling on auth endpoints (5 req/min)
-- **CORS**: Configured for frontend origin only
-
-### 🎨 User Experience
-- **Dark Mode**: System preference detection with manual toggle
-- **Responsive Design**: Mobile-first with bottom navigation
-- **Full-Screen Quiz**: Distraction-free testing environment
-- **Smooth Animations**: Page transitions, hover effects, score reveals
-- **Real-time Feedback**: Progress bars, timers, and live statistics
-
-### 📊 Progress Tracking
-- **Per-Topic Progress**: Track performance by difficulty level
-- **Score Trends**: Visualize improvement with line charts
-- **Detailed Reviews**: Learn from mistakes with comprehensive explanations
-- **Test History**: Review all past attempts with full breakdown
-
-### 🔄 Randomization
-- **Fisher-Yates Algorithm**: Questions shuffled for every test
-- **Option Shuffling**: Answer order randomized to prevent memorization
-- **Fair Testing**: Every attempt is unique and unpredictable
+| Feature | Guest | Registered |
+|---------|:-----:|:----------:|
+| Take practice tests | ✅ | ✅ |
+| View results | ✅ | ✅ |
+| Timed mode | ✅ | ✅ |
+| Mock interview mode | ✅ | ✅ |
+| Flashcards | ✅ | ✅ |
+| Browse topics | ✅ | ✅ |
+| Progress tracking | ❌ | ✅ |
+| Score history | ❌ | ✅ |
+| Bookmark questions | ❌ | ✅ |
+| Weak topic analysis | ❌ | ✅ |
+| Dashboard | ❌ | ✅ |
 
 ---
 
 ## 🚀 Deployment
 
-See [DEPLOYMENT.md](./DEPLOYMENT.md) for comprehensive deployment instructions to Vercel (both frontend and backend).
+### Vercel (Recommended)
 
-Quick summary:
-1. Set up PostgreSQL database (Supabase, Neon, or Railway)
-2. Deploy backend to Vercel with environment variables
-3. Run migrations: `npx prisma migrate deploy`
-4. Seed database: `npx prisma db seed`
-5. Deploy frontend to Vercel with `NEXT_PUBLIC_API_URL`
+1. **Database**: Create a PostgreSQL database on [Neon](https://neon.tech) or [Supabase](https://supabase.com)
+
+2. **Backend**:
+   - Import repository to Vercel
+   - Set root directory: `apps/backend`
+   - Add environment variables
+   - Deploy
+
+3. **Frontend**:
+   - Create new Vercel project
+   - Set root directory: `apps/frontend`
+   - Add `NEXT_PUBLIC_API_URL` pointing to backend
+   - Deploy
+
+4. **Initialize Database**:
+   ```bash
+   cd apps/backend
+   npx prisma db push
+   npx prisma db seed
+   ```
 
 ---
 
 ## 🤝 Contributing
 
-Contributions are welcome! Here's how you can help:
+Contributions are welcome! Areas for contribution:
 
-1. **Fork the repository**
-2. **Create a feature branch**: `git checkout -b feature/amazing-feature`
-3. **Commit your changes**: `git commit -m 'Add amazing feature'`
-4. **Push to the branch**: `git push origin feature/amazing-feature`
-5. **Open a Pull Request**
-
-### Areas for Contribution
-- 📝 Add more interview questions (maintain quality standard)
+- 📝 Add quality interview questions
 - 🌍 Internationalization (i18n)
-- 📈 Additional chart types (radar charts for skill mapping)
-- 🎮 Gamification features (badges, streaks, leaderboards)
 - 🧪 Unit and E2E tests
+- 📱 Mobile app (React Native)
+- 🎮 Gamification features
+
+### How to Contribute
+
+1. Fork the repository
+2. Create feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+This project is open source under the [MIT License](LICENSE).
 
 ---
+
+<div align="center">
 
 ## 👤 Author
 
 **Zain Raza Jafri**  
 Cloud & DevOps Engineer
 
-- 🐙 GitHub: [@zainjafri4](https://github.com/zainjafri4)
-- 💼 LinkedIn: [zainjafri4](https://linkedin.com/in/zainjafri4)
+[![GitHub](https://img.shields.io/badge/GitHub-100000?style=for-the-badge&logo=github&logoColor=white)](https://github.com/zainjafri4)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](https://linkedin.com/in/zainjafri4)
 
 ---
 
-<div align="center">
-
-## ⭐ Star History
-
-**If this helped your interview prep, leave a ⭐ on the repo!**
+**⭐ If this helped your interview prep, star the repo!**
 
 ---
 
-### 📧 Contact & Support
-
-Found a bug? Have a feature request? Open an issue on GitHub!
-
-For general inquiries: [LinkedIn](https://linkedin.com/in/zainjafri4)
-
----
-
-**Made with ❤️ and lots of ☕ by the DevOps community**
+Made with ❤️ for the DevOps community
 
 </div>

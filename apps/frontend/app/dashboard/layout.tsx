@@ -5,6 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
+import { useAuthStore } from '@/store/authStore';
 import { getUserDisplayName, getUserInitials, getStoredAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { 
@@ -32,26 +33,22 @@ export default function DashboardLayout({
   const router = useRouter();
   const pathname = usePathname();
   const { user, isAuthenticated, logout } = useAuth();
+  const hasHydrated = useAuthStore((state) => state._hasHydrated);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
-  const [isHydrated, setIsHydrated] = useState(false);
 
   // Check if we're on the active quiz page (hide sidebar)
   const isQuizPage = pathname.includes('/test/') && pathname.split('/').length > 4;
 
-  // Wait for hydration before checking auth
   useEffect(() => {
-    setIsHydrated(true);
-  }, []);
-
-  useEffect(() => {
-    if (!isHydrated) return;
+    // Wait for zustand to finish rehydrating before checking auth
+    if (!hasHydrated) return;
     
-    // Check localStorage directly to avoid zustand hydration race condition
+    // Check localStorage directly as additional fallback
     const stored = getStoredAuth();
     if (!isAuthenticated && !stored.accessToken) {
       router.push('/login');
     }
-  }, [isAuthenticated, isHydrated, router]);
+  }, [isAuthenticated, hasHydrated, router]);
 
   // Dark mode initialization
   useEffect(() => {
@@ -69,8 +66,8 @@ export default function DashboardLayout({
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
   };
 
-  // Show loading state while hydrating
-  if (!isHydrated) {
+  // Show loading state while zustand is rehydrating
+  if (!hasHydrated) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
         <div className="text-gray-500">Loading...</div>
@@ -78,12 +75,19 @@ export default function DashboardLayout({
     );
   }
 
+  // After hydration, check if user is authenticated
   if (!isAuthenticated || !user) {
-    // Check localStorage as fallback during hydration
+    // Check localStorage as fallback
     const stored = getStoredAuth();
     if (!stored.accessToken) {
       return null;
     }
+    // If we have a token but no user yet, show loading
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
   }
 
   return (
@@ -95,7 +99,7 @@ export default function DashboardLayout({
             {/* Logo */}
             <div className="flex items-center justify-between px-6 py-6 border-b border-gray-200 dark:border-gray-800">
               <div className="flex items-center space-x-2">
-                <span className="text-2xl">🚀</span>
+                <span className="text-2xl">⚙️</span>
                 <span className="text-lg font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                   Ops Forge
                 </span>
@@ -204,7 +208,7 @@ export default function DashboardLayout({
         <div className="md:hidden fixed top-0 inset-x-0 bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 z-40">
           <div className="flex items-center justify-between px-4 h-14">
             <div className="flex items-center space-x-2">
-              <span className="text-xl">🚀</span>
+              <span className="text-xl">⚙️</span>
               <span className="text-base font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
                 Ops Forge
               </span>

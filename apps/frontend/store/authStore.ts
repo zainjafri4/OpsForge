@@ -3,13 +3,23 @@ import { persist } from 'zustand/middleware';
 import { AuthState, AuthResponse, User } from '@/types';
 import { storeAuth, clearAuth, getStoredAuth } from '@/lib/auth';
 
-export const useAuthStore = create<AuthState>()(
+interface AuthStoreState extends AuthState {
+  _hasHydrated: boolean;
+  setHasHydrated: (state: boolean) => void;
+}
+
+export const useAuthStore = create<AuthStoreState>()(
   persist(
     (set) => ({
       user: null,
       accessToken: null,
       refreshToken: null,
       isAuthenticated: false,
+      _hasHydrated: false,
+
+      setHasHydrated: (state: boolean) => {
+        set({ _hasHydrated: state });
+      },
 
       setAuth: (auth: AuthResponse) => {
         storeAuth(auth);
@@ -49,6 +59,8 @@ export const useAuthStore = create<AuthState>()(
             user: stored.user,
           });
         }
+        // Mark hydration as complete
+        state?.setHasHydrated(true);
       },
     }
   )

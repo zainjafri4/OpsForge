@@ -47,6 +47,15 @@ async function main() {
 
   console.log(`📝 Seeding ${allQuestions.length} questions...`);
   
+  // Clear related records first (foreign key constraints)
+  console.log(`   🗑️  Clearing related records...`);
+  await prisma.bookmark.deleteMany({});
+  await prisma.testAnswer.deleteMany({});
+  await prisma.sessionQuestion.deleteMany({});
+  await prisma.testResult.deleteMany({});
+  await prisma.testSession.deleteMany({});
+  await prisma.userProgress.deleteMany({});
+  
   // Clear existing questions
   await prisma.question.deleteMany({});
   console.log(`   🗑️  Cleared existing questions`);

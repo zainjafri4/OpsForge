@@ -78,4 +78,28 @@ export class TopicsService {
       orderBy: { difficulty: 'asc' },
     });
   }
+
+  async findBySlugPublic(slug: string) {
+    const topic = await this.prisma.topic.findUnique({
+      where: { slug },
+    });
+
+    if (!topic) throw new NotFoundException(`Topic "${slug}" not found`);
+
+    const [easy, medium, hard] = await Promise.all([
+      this.prisma.question.count({ where: { topicId: topic.id, difficulty: 'EASY' } }),
+      this.prisma.question.count({ where: { topicId: topic.id, difficulty: 'MEDIUM' } }),
+      this.prisma.question.count({ where: { topicId: topic.id, difficulty: 'HARD' } }),
+    ]);
+
+    return {
+      ...topic,
+      questionCounts: {
+        easy,
+        medium,
+        hard,
+        total: easy + medium + hard,
+      },
+    };
+  }
 }

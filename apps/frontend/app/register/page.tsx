@@ -27,7 +27,7 @@ export default function RegisterPage() {
       <div className="w-full max-w-md">
         <div className="text-center mb-8">
           <Link href="/" className="inline-flex items-center space-x-2 mb-8">
-            <span className="text-3xl">🔨</span>
+            <span className="text-3xl">⚙️</span>
             <span className="text-2xl font-bold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
               OpsForge
             </span>

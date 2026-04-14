@@ -27,6 +27,14 @@ export default function RootLayout({
 
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <title>OpsForge - Cloud, DevOps & SRE Interview Prep</title>
+        <meta name="description" content="Master your DevOps, Cloud, and SRE interviews with 300+ real interview questions. Practice Kubernetes, AWS, Terraform, CI/CD and more." />
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="32x32" />
+        <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+        <meta name="theme-color" content="#4f46e5" />
+      </head>
       <body className={inter.className}>
         <QueryClientProvider client={queryClient}>
           {children}

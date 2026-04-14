@@ -9,6 +9,7 @@ import { QuestionsModule } from './questions/questions.module';
 import { TestsModule } from './tests/tests.module';
 import { ResultsModule } from './results/results.module';
 import { ProgressModule } from './progress/progress.module';
+import { BookmarksModule } from './bookmarks/bookmarks.module';
 
 @Module({
   imports: [
@@ -28,6 +29,7 @@ import { ProgressModule } from './progress/progress.module';
     TestsModule,
     ResultsModule,
     ProgressModule,
+    BookmarksModule,
   ],
 })
 export class AppModule {}

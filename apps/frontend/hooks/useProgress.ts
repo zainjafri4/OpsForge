@@ -37,8 +37,8 @@ export const useResultsHistory = () => {
   return useQuery({
     queryKey: ['results-history'],
     queryFn: async () => {
-      const response = await api.get<TestResult[]>('/results/history');
-      return response.data;
+      const response = await api.get<{ data: TestResult[]; meta: any }>('/results/history');
+      return response.data.data || [];
     },
   });
 };

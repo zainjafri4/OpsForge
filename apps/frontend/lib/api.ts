@@ -63,10 +63,11 @@ api.interceptors.response.use(
         }
         return api(originalRequest);
       } catch (refreshError) {
-        // Refresh failed - clear auth and redirect to login
+        // Refresh failed - clear ALL auth storage and redirect to login
         localStorage.removeItem('accessToken');
         localStorage.removeItem('refreshToken');
         localStorage.removeItem('user');
+        localStorage.removeItem('auth-storage'); // Clear zustand persist storage
         if (typeof window !== 'undefined') {
           window.location.href = '/login';
         }

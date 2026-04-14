@@ -23,4 +23,11 @@ export class ProgressController {
   async getStats(@Request() req) {
     return this.progressService.getStats(req.user.id);
   }
+
+  @Get('weak-topics')
+  @ApiOperation({ summary: 'Get weak and strong topics based on accuracy' })
+  @ApiResponse({ status: 200, description: 'Topics analysis with accuracy scores' })
+  async getWeakTopics(@Request() req) {
+    return this.progressService.getWeakTopics(req.user.id);
+  }
 }
