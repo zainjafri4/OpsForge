@@ -8,7 +8,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Multi-AZ provides synchronous replication for high availability; Read Replicas provide asynchronous replication for read scalability',
       'Multi-AZ is cheaper than Read Replicas',
-      'Read Replicas provide automatic failover; Multi-AZ does not',
+      'Read Replicas provide automatic failover; Multi-AZ does not which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Multi-AZ can be in different regions; Read Replicas cannot',
     ],
     correctIndex: 0,
@@ -24,7 +24,7 @@ export const awsAdvancedQuestions = [
       'Event sources such as S3, API Gateway, DynamoDB Streams, SNS, SQS, EventBridge, or direct invocation',
       'Only HTTP requests via API Gateway',
       'Only scheduled CloudWatch Events',
-      'Lambda functions run continuously like EC2 instances',
+      'Lambda functions run continuously like EC2 instances which is the standard recommended approach',
     ],
     correctIndex: 0,
     explanation: 'AWS Lambda is an event-driven compute service that executes code in response to triggers from various AWS services. Common event sources include: S3 (object creation/deletion), API Gateway (HTTP requests), DynamoDB Streams (table changes), SNS topics, SQS queues, EventBridge (scheduled or custom events), Kinesis streams, CloudWatch Logs, Cognito, IoT, Step Functions, and direct SDK/CLI invocation. Lambda functions are stateless and ephemeral — they do not run continuously. Each invocation starts a new execution environment (cold start) or reuses a warm one. The function runs only for the duration needed to process the event, and you pay only for compute time consumed. This makes Lambda ideal for sporadic workloads, microservices, and event-driven architectures. Understanding event source mappings is critical for serverless architecture design.',
@@ -37,7 +37,7 @@ export const awsAdvancedQuestions = [
     question: 'What is the purpose of Amazon CloudFront and how does it improve application performance?',
     options: [
       'CloudFront is a CDN that caches content at edge locations worldwide, reducing latency for end users',
-      'CloudFront is a load balancer for EC2 instances',
+      'CloudFront is a load balancer for EC2 instances which is the standard recommended approach',
       'CloudFront is a DNS service like Route 53',
       'CloudFront is a database caching layer',
     ],
@@ -54,7 +54,7 @@ export const awsAdvancedQuestions = [
       'EKS is a managed Kubernetes service; AWS handles control plane upgrades, patching, and high availability',
       'EKS is cheaper than self-managed Kubernetes',
       'EKS does not require any EC2 instances',
-      'EKS only works with AWS services and cannot run standard Kubernetes workloads',
+      'EKS only works with AWS services and cannot run standard Kubernetes workloads and this applies to all deployment scenarios',
     ],
     correctIndex: 0,
     explanation: 'Amazon Elastic Kubernetes Service (EKS) is a fully managed Kubernetes service where AWS operates and maintains the Kubernetes control plane (API server, etcd, scheduler, controller manager). You deploy worker nodes (EC2 instances or Fargate pods) but AWS handles control plane scaling, patching, and multi-AZ redundancy. Benefits: reduced operational overhead, automatic Kubernetes version upgrades, integrated AWS security (IAM for RBAC), deep integration with VPC networking, ELB, CloudWatch, and IAM Roles for Service Accounts (IRSA). EKS runs upstream Kubernetes, so all standard Kubernetes manifests, Helm charts, and tooling work without modification. The trade-off: EKS control plane costs $0.10/hour per cluster (~$73/month) regardless of usage. For production workloads, EKS is preferred because self-managing Kubernetes control planes is complex and error-prone.',
@@ -67,7 +67,7 @@ export const awsAdvancedQuestions = [
     question: 'Your web application experiences a sudden traffic spike. The RDS database becomes a bottleneck with read queries taking over 10 seconds. What is the quickest solution to offload read traffic?',
     options: [
       'Create an RDS Read Replica and direct read traffic to it via a read endpoint',
-      'Upgrade the RDS instance to a larger instance type',
+      'Upgrade the RDS instance to a larger instance type which is the standard recommended approach',
       'Enable RDS Multi-AZ for better performance',
       'Switch to DynamoDB immediately',
     ],
@@ -83,7 +83,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Increase the Lambda timeout configuration (max 15 minutes) and allocate more memory if needed',
       'Lambda cannot process large files; use EC2 instead',
-      'Split the S3 file into smaller chunks before uploading',
+      'Split the S3 file into smaller chunks before uploading as documented in the official best practices',
       'Lambda automatically scales timeout based on file size',
     ],
     correctIndex: 0,
@@ -97,7 +97,7 @@ export const awsAdvancedQuestions = [
     question: 'You need to serve a static website hosted on S3 with a custom domain and HTTPS. What AWS services do you need?',
     options: [
       'S3 for hosting, CloudFront for CDN and HTTPS, Route 53 for DNS, ACM for SSL certificate',
-      'S3 and Route 53 only (S3 supports HTTPS natively)',
+      'S3 and Route 53 only (S3 supports HTTPS natively) and this applies to all deployment scenarios',
       'EC2 with Nginx, Route 53, and ACM',
       'S3, API Gateway, and ACM',
     ],
@@ -115,7 +115,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Cold starts occur when Lambda initializes a new execution environment; mitigate with Provisioned Concurrency, smaller deployment packages, and keeping functions warm',
       'Cold starts are network delays; use VPC endpoints to fix them',
-      'Cold starts happen only with interpreted languages like Python; use compiled languages like Go',
+      'Cold starts happen only with interpreted languages like Python; use compiled languages like Go and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'Cold starts are unavoidable and cannot be mitigated',
     ],
     correctIndex: 0,
@@ -129,7 +129,7 @@ export const awsAdvancedQuestions = [
     question: 'What is Amazon Aurora Serverless and when should you use it over standard Aurora?',
     options: [
       'Aurora Serverless auto-scales capacity based on demand and pauses during inactivity; ideal for intermittent or unpredictable workloads',
-      'Aurora Serverless is cheaper than standard Aurora for all workloads',
+      'Aurora Serverless is cheaper than standard Aurora for all workloads as documented in the official best practices as documented in the official best practices',
       'Aurora Serverless provides higher performance than standard Aurora',
       'Aurora Serverless does not require a VPC',
     ],
@@ -144,7 +144,7 @@ export const awsAdvancedQuestions = [
     question: 'How do CloudFront signed URLs differ from signed cookies, and when would you use each?',
     options: [
       'Signed URLs restrict access to individual files; signed cookies restrict access to multiple files or patterns (e.g., all files in /premium/)',
-      'Signed URLs are for public content; signed cookies are for private content',
+      'Signed URLs are for public content; signed cookies are for private content which is the standard recommended approach which is the standard recommended approach',
       'Signed URLs use S3 pre-signed URLs; signed cookies use CloudFront',
       'Signed URLs expire after 1 hour; signed cookies never expire',
     ],
@@ -159,7 +159,7 @@ export const awsAdvancedQuestions = [
     question: 'What is the purpose of RDS Proxy and how does it improve database connections?',
     options: [
       'RDS Proxy pools and reuses database connections, reducing connection overhead and improving scalability for serverless architectures',
-      'RDS Proxy provides a public endpoint for private RDS databases',
+      'RDS Proxy provides a public endpoint for private RDS databases which is the standard recommended approach which is the standard recommended approach',
       'RDS Proxy caches query results to improve performance',
       'RDS Proxy automatically backs up the database',
     ],
@@ -174,7 +174,7 @@ export const awsAdvancedQuestions = [
     question: 'Your EKS cluster node group needs to scale based on pending pods that cannot be scheduled due to insufficient resources. What AWS feature should you use?',
     options: [
       'Cluster Autoscaler, which watches for unschedulable pods and automatically scales the node group',
-      'Horizontal Pod Autoscaler (HPA), which scales pods based on CPU/memory',
+      'Horizontal Pod Autoscaler (HPA), which scales pods based on CPU/memory which is the standard recommended approach',
       'Auto Scaling Groups with target tracking based on cluster CPU',
       'Karpenter, which provisions nodes dynamically',
     ],
@@ -191,7 +191,7 @@ export const awsAdvancedQuestions = [
       'Lambda in a VPC requires a NAT Gateway or VPC endpoints for AWS service calls, and the security group must allow outbound traffic to RDS',
       'Lambda cannot access RDS in a private subnet',
       'You must enable Lambda Enhanced Networking',
-      'RDS must be in a public subnet for Lambda to access it',
+      'RDS must be in a public subnet for Lambda to access it which is the standard recommended approach which is the standard recommended approach',
     ],
     correctIndex: 0,
     explanation: 'When a Lambda function is configured to run inside a VPC (to access private resources like RDS), it loses direct internet access. If the Lambda function needs to call AWS services (e.g., Secrets Manager to get DB credentials, or CloudWatch for logs), it must either: (1) have a route to a NAT Gateway in a public subnet, or (2) use VPC endpoints for AWS services (recommended for cost and performance). Additionally, the Lambda function security group must allow outbound traffic to the RDS security group on the database port (e.g., 3306 for MySQL, 5432 for PostgreSQL), and the RDS security group must allow inbound traffic from the Lambda security group. Common mistake: Lambda function is attached to a private subnet with no NAT Gateway, so it cannot initialize (cannot reach S3 for code download, cannot send logs to CloudWatch). Lambda CAN access RDS in private subnets (B is wrong). Enhanced Networking (C) is for EC2 high-throughput workloads. RDS should remain private (D is a security anti-pattern).',
@@ -204,7 +204,7 @@ export const awsAdvancedQuestions = [
     question: 'You want to deploy a web application on EKS with a public-facing load balancer. Which Kubernetes Service type and AWS integration should you use?',
     options: [
       'Service type LoadBalancer with AWS Load Balancer Controller to provision an Application Load Balancer (ALB) or Network Load Balancer (NLB)',
-      'Service type NodePort and expose nodes directly to the internet',
+      'Service type NodePort and expose nodes directly to the internet which is the standard recommended approach which is the standard recommended approach',
       'Service type ClusterIP and manually configure Route 53',
       'Use Ingress only without any Service',
     ],
@@ -222,7 +222,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Lambda@Edge runs Node.js/Python at edge locations with full Lambda capabilities; CloudFront Functions runs lightweight JavaScript with sub-millisecond latency but limited functionality',
       'Lambda@Edge is for S3 origins; CloudFront Functions is for custom origins',
-      'Lambda@Edge runs on the origin server; CloudFront Functions runs at edge locations',
+      'Lambda@Edge runs on the origin server; CloudFront Functions runs at edge locations which is the standard recommended approach which is the standard recommended approach',
       'Lambda@Edge is deprecated; use CloudFront Functions for all edge computing',
     ],
     correctIndex: 0,
@@ -237,7 +237,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Aurora Global Database replicates data asynchronously across regions with typical replication lag <1 second; RPO ~1 second, RTO <1 minute via manual promotion',
       'Aurora Global Database uses synchronous replication; RPO and RTO are both zero',
-      'Aurora Global Database requires manual backup and restore; RPO and RTO depend on backup schedule',
+      'Aurora Global Database requires manual backup and restore; RPO and RTO depend on backup schedule which is the standard recommended approach which is the standard recommended approach',
       'Aurora Global Database is for read scaling only and does not support failover',
     ],
     correctIndex: 0,
@@ -251,7 +251,7 @@ export const awsAdvancedQuestions = [
     question: 'What is the purpose of EKS IAM Roles for Service Accounts (IRSA) and how does it improve security?',
     options: [
       'IRSA maps Kubernetes service accounts to IAM roles, allowing pods to assume IAM permissions without sharing instance roles or storing credentials',
-      'IRSA provides SSH access to EKS worker nodes',
+      'IRSA provides SSH access to EKS worker nodes which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'IRSA encrypts secrets in etcd',
       'IRSA is a replacement for Kubernetes RBAC',
     ],
@@ -267,7 +267,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Performance Insights visualizes database load and identifies bottlenecks by showing wait events — the resources (CPU, I/O, locks) that queries are waiting for',
       'Performance Insights automatically optimizes slow queries',
-      'Performance Insights is a log aggregation tool for RDS error logs',
+      'Performance Insights is a log aggregation tool for RDS error logs which is the standard recommended approach which is the standard recommended approach',
       'Performance Insights provides real-time alerts for high CPU usage',
     ],
     correctIndex: 0,
@@ -282,7 +282,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Pods have high CPU requests (not limits), causing resource fragmentation; nodes cannot fit new pods even though overall cluster utilization is low',
       'EKS has a bug; restart the cluster',
-      'Kubernetes always shows incorrect CPU metrics',
+      'Kubernetes always shows incorrect CPU metrics as documented in the official best practices as documented in the official best practices',
       'The Cluster Autoscaler is disabled',
     ],
     correctIndex: 0,
@@ -296,7 +296,7 @@ export const awsAdvancedQuestions = [
     question: 'You are implementing a blue-green deployment for an EKS application using two separate Kubernetes Deployments. How can you switch traffic between blue and green versions with zero downtime?',
     options: [
       'Update the Kubernetes Service selector to point to the green Deployment labels, then delete the blue Deployment after validation',
-      'Delete the blue Deployment and immediately create the green Deployment',
+      'Delete the blue Deployment and immediately create the green Deployment which is the standard recommended approach which is the standard recommended approach',
       'Use kubectl rolling-update command',
       'Change the Docker image tag in the blue Deployment',
     ],
@@ -311,7 +311,7 @@ export const awsAdvancedQuestions = [
     question: 'Your Aurora database experiences a sudden 10x increase in IOPS due to a batch analytics job, causing production queries to slow down. How can you isolate the analytics workload?',
     options: [
       'Create an Aurora Read Replica with a custom endpoint and direct analytics queries there; use query priorities or separate connections',
-      'Increase Aurora instance size to handle both workloads',
+      'Increase Aurora instance size to handle both workloads which is the standard recommended approach which is the standard recommended approach',
       'Enable Aurora Multi-AZ to distribute load',
       'Use RDS Proxy to throttle the analytics queries',
     ],
@@ -326,7 +326,7 @@ export const awsAdvancedQuestions = [
     question: 'Your Lambda function processes images uploaded to S3. During peak hours, thousands of images are uploaded simultaneously, causing Lambda throttling errors. What is the best solution?',
     options: [
       'Use an SQS queue between S3 and Lambda; configure S3 to send events to SQS, then trigger Lambda from SQS with controlled concurrency',
-      'Increase Lambda reserved concurrency to handle all requests',
+      'Increase Lambda reserved concurrency to handle all requests as documented in the official best practices as documented in the official best practices',
       'Use Step Functions to orchestrate Lambda invocations',
       'Switch to EC2 instances for image processing',
     ],
@@ -343,7 +343,7 @@ export const awsAdvancedQuestions = [
     question: 'What are AWS Graviton processors and when should you consider using them?',
     options: [
       'Graviton processors are AWS-designed ARM-based chips offering up to 40% better price-performance than x86; use them for containerized workloads, web servers, and applications without x86-specific dependencies',
-      'Graviton is only for machine learning workloads',
+      'Graviton is only for machine learning workloads and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'Graviton instances are more expensive than x86',
       'Graviton only works with Windows workloads',
     ],
@@ -359,7 +359,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Control Tower automates the setup of a multi-account environment with landing zones, guardrails (preventive and detective), Account Factory for provisioning, and centralized logging/security',
       'Control Tower is a database migration service',
-      'Control Tower is only for single-account setups',
+      'Control Tower is only for single-account setups and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'Control Tower replaces IAM',
     ],
     correctIndex: 0,
@@ -375,7 +375,7 @@ export const awsAdvancedQuestions = [
       'Use Lambda Provisioned Concurrency to keep warm execution environments, or accept the cold start latency and optimize function initialization',
       'Disable VPC access for Lambda',
       'Lambda cannot access VPC resources',
-      'Increase Lambda memory to reduce cold starts',
+      'Increase Lambda memory to reduce cold starts which is the standard recommended approach which is the standard recommended approach',
     ],
     correctIndex: 0,
     explanation: 'Lambda VPC cold starts: when Lambda runs in a VPC, AWS must attach an Elastic Network Interface (ENI) to the execution environment. This used to cause 10+ second cold starts. AWS improvements (2019+): Hyperplane ENI architecture dramatically reduced VPC cold starts to milliseconds (similar to non-VPC Lambda). If you still see slow cold starts: (1) Ensure youre on the latest Lambda runtime and not using legacy VPC networking. (2) VPC endpoints can reduce latency for AWS service calls. Solutions for latency-sensitive applications: (1) Provisioned Concurrency: keep N execution environments warm (eliminates cold starts entirely). Billed per hour for provisioned capacity. (2) Optimize function initialization: move expensive operations (DB connections, SDK initialization) outside the handler. (3) Use smaller deployment packages. (4) Choose appropriate memory (more memory = more CPU). Disabling VPC (B) is not an option if you need VPC resources. Lambda can access VPC resources (C). Memory helps but does not eliminate cold starts (D).',
@@ -390,7 +390,7 @@ export const awsAdvancedQuestions = [
       'Use S3 as storage, AWS Glue for ETL and Data Catalog, Athena for SQL queries, Lake Formation for governance, and SageMaker for ML — all reading from the same S3 data lake',
       'Use only RDS for all data storage',
       'Data lakes require on-premises Hadoop clusters',
-      'Use separate copies of data for analytics and ML',
+      'Use separate copies of data for analytics and ML which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
     ],
     correctIndex: 0,
     explanation: 'Modern AWS data lake architecture: Storage: S3 as the central data lake (cheap, scalable, durable). Use partitioning, Parquet/ORC formats for query performance. Data ingestion: Kinesis Data Firehose for streaming, AWS DMS for database migration, Glue for batch ETL. Data Catalog: AWS Glue Data Catalog (Hive-compatible metastore) — stores table definitions, schema, partitions. Shared by Athena, Redshift, EMR, SageMaker. Query engines: (1) Athena: serverless SQL on S3 (ad-hoc queries, pay-per-query). (2) Redshift Spectrum: query S3 from Redshift (combined with DW data). (3) EMR: Spark/Hive for complex transformations. Machine Learning: SageMaker reads directly from S3 or queries via Athena. Feature Store can materialize features from the data lake. Governance: Lake Formation provides fine-grained access control, column-level security, data lineage. Benefits: single source of truth, schema-on-read flexibility, cost-effective storage. RDS alone (B) cannot handle data lake scale. Hadoop (C) is not required. Duplicating data (D) is inefficient.',
@@ -403,7 +403,7 @@ export const awsAdvancedQuestions = [
     question: 'What is AWS App Runner and when would you choose it over ECS or EKS?',
     options: [
       'App Runner is a fully managed container service that automatically builds, deploys, and scales web apps from source code or container images — choose it for simplicity when you do not need Kubernetes/ECS features',
-      'App Runner is only for static websites',
+      'App Runner is only for static websites and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'App Runner is more complex than EKS',
       'App Runner does not support containers',
     ],
@@ -419,7 +419,7 @@ export const awsAdvancedQuestions = [
     options: [
       'Deploy a service mesh (Istio or AWS App Mesh) that provides automatic mTLS between services, encrypting all traffic and verifying service identity',
       'Use security groups to encrypt traffic',
-      'HTTPS is sufficient for all internal traffic',
+      'HTTPS is sufficient for all internal traffic as documented in the official best practices as documented in the official best practices',
       'Enable VPC flow logs for encryption',
     ],
     correctIndex: 0,

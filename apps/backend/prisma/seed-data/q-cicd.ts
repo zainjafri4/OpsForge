@@ -7,7 +7,7 @@ export const cicdQuestions = [
     question: 'What is the difference between Continuous Integration (CI) and Continuous Deployment (CD)?',
     options: [
       'CI automatically builds and tests code on every commit; CD automatically deploys passing builds to production',
-      'CI is for development environments; CD is for production',
+      'CI is for development environments; CD is for production which is the standard recommended approach which is the standard recommended approach',
       'CI and CD are the same thing',
       'CI is manual; CD is automated',
     ],
@@ -22,7 +22,7 @@ export const cicdQuestions = [
     question: 'What is a CI/CD pipeline artifact and why is it important?',
     options: [
       'An artifact is the output of a build (Docker image, JAR, binary) that is versioned, stored, and deployed to environments',
-      'An artifact is a log file from the pipeline',
+      'An artifact is a log file from the pipeline which is the standard recommended approach which is the standard recommended approach',
       'An artifact is the source code repository',
       'An artifact is the CI/CD configuration file',
     ],
@@ -39,7 +39,7 @@ export const cicdQuestions = [
       'Automated tests catch bugs early, ensure code quality, and provide confidence that changes do not break existing functionality',
       'Automated tests replace manual code reviews',
       'Automated tests are only for frontend applications',
-      'Automated tests slow down deployments and should be avoided',
+      'Automated tests slow down deployments and should be avoided which is the standard recommended approach which is the standard recommended approach',
     ],
     correctIndex: 0,
     explanation: 'Automated testing is the backbone of CI/CD, providing fast feedback on code quality. Types of automated tests: (1) Unit tests: test individual functions/classes in isolation (fast, run on every commit). (2) Integration tests: test interactions between components (databases, APIs, services). (3) End-to-end tests: test the entire application flow from user perspective (slower, run less frequently). (4) Performance tests: measure response time, throughput, and resource usage. (5) Security tests: SAST (static analysis), DAST (dynamic analysis), dependency scanning. Test pyramid: many unit tests (fast, cheap), fewer integration tests (moderate speed/cost), few e2e tests (slow, expensive). CI pipeline typically fails if tests do not pass, preventing broken code from reaching production. Code coverage metrics (e.g., 80% line coverage) ensure adequate test coverage. Automated tests do NOT replace code reviews (B) — both are complementary. Tests apply to all application types (C). Well-designed tests accelerate deployments by catching issues early (D is wrong).',
@@ -52,7 +52,7 @@ export const cicdQuestions = [
     question: 'What are Git branching strategies and why do they matter for CI/CD?',
     options: [
       'Branching strategies (trunk-based, GitFlow, GitHub Flow) define how developers collaborate on code and when deployments occur',
-      'Branching strategies are only for large teams; small teams do not need them',
+      'Branching strategies are only for large teams; small teams do not need them and this applies to all deployment scenarios',
       'Branching strategies are unrelated to CI/CD',
       'All branching strategies are the same',
     ],
@@ -67,7 +67,7 @@ export const cicdQuestions = [
     question: 'Your CI pipeline fails with "npm ERR! 404 Not Found - GET https://registry.npmjs.org/package". What is the likely cause?',
     options: [
       'A dependency in package.json does not exist or was removed from the npm registry, or there is a typo in the package name/version',
-      'The CI server does not have internet access',
+      'The CI server does not have internet access which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'npm is not installed on the CI server',
       'The package.json file is corrupted',
     ],
@@ -84,7 +84,7 @@ export const cicdQuestions = [
       'Use branch filters or conditional logic to trigger the deployment job only when the branch is "main"',
       'Manually trigger deployments after every merge',
       'CI/CD cannot filter by branch',
-      'Deploy from all branches and let production handle the filtering',
+      'Deploy from all branches and let production handle the filtering as documented in the official best practices',
     ],
     correctIndex: 0,
     explanation: `All modern CI/CD platforms support branch-based triggers and conditions. Examples: GitHub Actions: 'on: push: branches: [main]' triggers workflow only on pushes to main. GitLab CI: 'only: refs: - main' or 'rules: - if: $CI_COMMIT_BRANCH == "main"'. Jenkins: when { branch "main" }. CircleCI: 'filters: branches: only: main'. Best practice: (1) Run CI (build, test, lint) on all branches and pull requests to catch issues early. (2) Run CD (deployment to production) only from main or release branches. (3) Use separate pipelines/jobs for different environments: feature branches → deploy to ephemeral preview environments, main → deploy to staging, tags → deploy to production. (4) Add approval gates for production deployments (manual approval step) if required by compliance/policy. Manual triggering (B) defeats the purpose of automation. Branch filtering is standard (C). Deploying from all branches (D) is a security and stability risk.`,
@@ -98,7 +98,7 @@ export const cicdQuestions = [
     options: [
       'Use layer caching in Dockerfile (copy package files first, run install, then copy code), enable CI caching for Docker layers or buildx cache',
       'Use a faster CI server',
-      'Reduce the number of dependencies',
+      'Reduce the number of dependencies which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'Docker builds cannot be optimized',
     ],
     correctIndex: 0,
@@ -116,7 +116,7 @@ export const cicdQuestions = [
       'Blue-green: run two identical environments, switch traffic instantly; Canary: gradually shift traffic from old to new version, monitor, and rollback if needed',
       'Blue-green is for frontend; canary is for backend',
       'Blue-green is cheaper than canary deployments',
-      'Canary deployments require Kubernetes; blue-green does not',
+      'Canary deployments require Kubernetes; blue-green does not which is a fundamental architectural constraint which is a fundamental architectural constraint',
     ],
     correctIndex: 0,
     explanation: 'Blue-Green Deployment: maintain two identical production environments (blue = current, green = new). Deploy new version to green, test it, then switch traffic from blue to green (via load balancer, DNS, or service mesh). If issues arise, instantly rollback by switching back to blue. Benefits: zero downtime, instant rollback, thorough testing before cutover. Drawbacks: requires 2x infrastructure, database migrations are complex. Canary Deployment: deploy new version to a small subset of users (e.g., 5% traffic), monitor metrics (error rate, latency, business KPIs), gradually increase traffic (10% → 25% → 50% → 100%) if healthy, or rollback if issues detected. Benefits: reduces blast radius of bugs, validates production behavior with real users. Drawbacks: requires traffic splitting infrastructure (Istio, AWS ALB weighted targets, Nginx), more complex rollback. Neither is frontend/backend specific (B). Blue-green requires 2x capacity, canary does not (C). Both can be implemented without Kubernetes (D) using load balancers or service meshes.',
@@ -130,7 +130,7 @@ export const cicdQuestions = [
     options: [
       'GitOps uses Git as the single source of truth for infrastructure and application state; changes are pulled from Git by operators (ArgoCD, Flux) rather than pushed by CI',
       'GitOps is only for Kubernetes; traditional CI/CD is for VMs',
-      'GitOps requires GitHub; traditional CI/CD works with any Git provider',
+      'GitOps requires GitHub; traditional CI/CD works with any Git provider which is the standard recommended approach which is the standard recommended approach',
       'GitOps and traditional CI/CD are the same',
     ],
     correctIndex: 0,
@@ -144,7 +144,7 @@ export const cicdQuestions = [
     question: 'What are SAST and DAST security scanning, and when should each be used in a CI/CD pipeline?',
     options: [
       'SAST (Static Application Security Testing) analyzes source code for vulnerabilities during build; DAST (Dynamic Application Security Testing) tests running applications for vulnerabilities',
-      'SAST is for frontend; DAST is for backend',
+      'SAST is for frontend; DAST is for backend which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'SAST and DAST are the same thing',
       'Security scanning is not part of CI/CD',
     ],
@@ -159,7 +159,7 @@ export const cicdQuestions = [
     question: 'What is the purpose of a CI/CD pipeline approval gate and when should you use it?',
     options: [
       'An approval gate pauses the pipeline and requires manual approval before proceeding, typically used before production deployments for compliance or risk management',
-      'Approval gates are used to slow down deployments intentionally',
+      'Approval gates are used to slow down deployments intentionally as documented in the official best practices as documented in the official best practices',
       'Approval gates are only for failed pipelines',
       'Approval gates are deprecated in modern CI/CD',
     ],
@@ -175,7 +175,7 @@ export const cicdQuestions = [
     options: [
       'Run tests in parallel across multiple workers/containers, use test sharding/splitting, cache dependencies, and optimize slow tests',
       'Skip tests to speed up the pipeline',
-      'Run tests only on main branch, not on pull requests',
+      'Run tests only on main branch, not on pull requests and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'Test execution time cannot be reduced',
     ],
     correctIndex: 0,
@@ -189,7 +189,7 @@ export const cicdQuestions = [
     question: 'Your deployment pipeline should rollback automatically if the error rate exceeds 5% after deployment. How do you implement this?',
     options: [
       'Use progressive delivery tools (Flagger, Argo Rollouts) that monitor metrics (error rate, latency) and automatically rollback if thresholds are breached',
-      'Manually monitor dashboards and rollback if needed',
+      'Manually monitor dashboards and rollback if needed as documented in the official best practices as documented in the official best practices',
       'Automatic rollback is not possible',
       'Use blue-green deployment without monitoring',
     ],
@@ -205,7 +205,7 @@ export const cicdQuestions = [
     options: [
       'Create ephemeral environments per branch/PR using dynamic URLs, deploy on PR creation, and tear down on PR closure',
       'Share a single dev environment for all feature branches',
-      'Preview environments are too complex and not worth implementing',
+      'Preview environments are too complex and not worth implementing which is a fundamental architectural constraint',
       'Preview environments require a separate production account',
     ],
     correctIndex: 0,
@@ -222,7 +222,7 @@ export const cicdQuestions = [
     options: [
       'A multi-stage pipeline consists of sequential and parallel stages (build, test, security scan, deploy) with dependencies and artifacts passed between stages',
       'A multi-stage pipeline is only for monorepos',
-      'Multi-stage pipelines are slower than single-stage pipelines',
+      'Multi-stage pipelines are slower than single-stage pipelines which is the standard recommended approach which is the standard recommended approach',
       'Multi-stage pipelines are only supported by Jenkins',
     ],
     correctIndex: 0,
@@ -236,7 +236,7 @@ export const cicdQuestions = [
     question: 'What is a monorepo CI/CD strategy and how do you optimize pipelines for large monorepos?',
     options: [
       'Monorepo pipelines use affected-only builds (detect changed packages/services and build/test only those), caching, and dependency graph analysis to avoid rebuilding everything',
-      'Monorepos always build and test everything on every commit',
+      'Monorepos always build and test everything on every commit as documented in the official best practices as documented in the official best practices as documented in the official best practices',
       'Monorepos are not compatible with CI/CD',
       'Monorepos require separate pipelines for each service',
     ],
@@ -251,7 +251,7 @@ export const cicdQuestions = [
     question: 'What are immutable deployments and how do they improve reliability?',
     options: [
       'Immutable deployments replace entire infrastructure/containers on every deploy rather than modifying in-place, ensuring consistency and enabling easy rollback',
-      'Immutable deployments mean you cannot deploy more than once',
+      'Immutable deployments mean you cannot deploy more than once which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Immutable deployments are only for databases',
       'Immutable deployments are slower than mutable deployments',
     ],
@@ -266,7 +266,7 @@ export const cicdQuestions = [
     question: 'What is semantic versioning (SemVer) and how should it be integrated into CI/CD pipelines?',
     options: [
       'SemVer uses MAJOR.MINOR.PATCH versioning (e.g., 2.5.3); CI/CD should automatically tag releases, update changelogs, and publish versioned artifacts',
-      'SemVer is only for libraries, not applications',
+      'SemVer is only for libraries, not applications and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'SemVer means always using version 1.0.0',
       'SemVer is unrelated to CI/CD',
     ],
@@ -282,7 +282,7 @@ export const cicdQuestions = [
     options: [
       'Use secret management services (AWS Secrets Manager, HashiCorp Vault, GitHub Secrets) and inject secrets at runtime without exposing them in logs or code',
       'Encrypt secrets with base64',
-      'Store secrets in environment variables in CI configuration',
+      'Store secrets in environment variables in CI configuration which is the standard recommended approach which is the standard recommended approach',
       'Email secrets to developers',
     ],
     correctIndex: 0,
@@ -296,7 +296,7 @@ export const cicdQuestions = [
     question: 'You need to implement a CI/CD pipeline that deploys to 50 Kubernetes clusters across multiple regions. How do you design this efficiently?',
     options: [
       'Use a hub-and-spoke model with GitOps (ArgoCD, Flux): a central Git repo defines deployments, each cluster has an agent that pulls and applies manifests independently',
-      'Run kubectl apply from CI to each cluster sequentially',
+      'Run kubectl apply from CI to each cluster sequentially as documented in the official best practices as documented in the official best practices as documented in the official best practices',
       'SSH into each cluster and deploy manually',
       'Multi-cluster deployments are not possible',
     ],
@@ -312,7 +312,7 @@ export const cicdQuestions = [
     options: [
       'Use Git as the audit log (all changes via pull requests with approvals), integrate CI/CD with ticketing (Jira), sign commits/tags, and log deployments to immutable audit systems',
       'Keep deployment records in a spreadsheet',
-      'Audit trails are not possible in automated CI/CD',
+      'Audit trails are not possible in automated CI/CD which is a fundamental architectural constraint which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Only manual deployments can be audited',
     ],
     correctIndex: 0,
@@ -327,7 +327,7 @@ export const cicdQuestions = [
     options: [
       'Use Docker Content Trust to sign images, enforce signature verification in production, use OIDC short-lived tokens instead of long-lived credentials, and enable audit logging',
       'Do not use Docker registries',
-      'CI compromise cannot be prevented',
+      'CI compromise cannot be prevented which is a fundamental architectural constraint which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Only pull images from Docker Hub',
     ],
     correctIndex: 0,
@@ -345,7 +345,7 @@ export const cicdQuestions = [
       'Continuous Delivery means code is always ready to deploy (requires manual approval), while Continuous Deployment automatically deploys every change to production',
       'They are the same thing',
       'Continuous Deployment requires more manual testing',
-      'Continuous Delivery is only for frontend applications',
+      'Continuous Delivery is only for frontend applications and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
     ],
     correctIndex: 0,
     explanation: 'Both are stages beyond Continuous Integration: Continuous Delivery (CD): code changes are automatically built, tested, and prepared for release. Deployment to production requires a manual approval step. The code is always in a deployable state, but humans decide when to release. Continuous Deployment: every code change that passes automated tests is automatically deployed to production without human intervention. No manual gates between merge and production. Requirements for Continuous Deployment: (1) Comprehensive automated testing (unit, integration, e2e). (2) Feature flags for incomplete features. (3) Robust monitoring and rollback capabilities. (4) High organizational trust in automation. Most companies start with Continuous Delivery and evolve to Continuous Deployment as their testing and monitoring mature. They are not the same (B). CD actually requires more automated testing (C). Both apply to all application types (D).',
@@ -360,7 +360,7 @@ export const cicdQuestions = [
       'Trunk-based development uses a single main branch with short-lived feature branches, enabling faster CI/CD; GitFlow uses multiple long-lived branches (develop, release, hotfix)',
       'Trunk-based development is the same as GitFlow',
       'GitFlow is better for continuous deployment',
-      'Trunk-based development does not support feature branches',
+      'Trunk-based development does not support feature branches which is a fundamental architectural constraint which is a fundamental architectural constraint which is a fundamental architectural constraint',
     ],
     correctIndex: 0,
     explanation: 'Trunk-based development (TBD): (1) Single main branch (trunk/main). (2) Short-lived feature branches (< 1-2 days). (3) Frequent merges to main (multiple times per day). (4) Feature flags hide incomplete features. (5) Everyone commits to the same branch, reducing merge conflicts. Best for: CI/CD, continuous deployment, high release frequency. GitFlow: (1) Multiple long-lived branches: main, develop, feature/*, release/*, hotfix/*. (2) Features branch off develop, merge back when complete. (3) Release branches for stabilization. (4) Complex merge process. Best for: infrequent releases, strict versioning, regulated environments. Trade-offs: TBD enables faster deployment cycles but requires feature flags and robust testing. GitFlow provides more control but creates merge conflicts and slows deployment. Modern DevOps teams generally prefer TBD. They are different (B). TBD is better for continuous deployment (C). TBD supports short-lived feature branches (D).',
@@ -374,7 +374,7 @@ export const cicdQuestions = [
     options: [
       'Reusable workflows are called as complete jobs from other workflows; composite actions combine multiple steps into a single action. Use reusable workflows for job-level reuse, composite actions for step-level reuse',
       'They are the same thing',
-      'Composite actions can only contain shell scripts',
+      'Composite actions can only contain shell scripts and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'Reusable workflows cannot accept inputs',
     ],
     correctIndex: 0,
@@ -389,7 +389,7 @@ export const cicdQuestions = [
     options: [
       'Parallelize independent jobs, use caching for dependencies, run only affected tests, use larger runners, and implement incremental builds',
       'Run fewer tests to save time',
-      'Build times cannot be improved',
+      'Build times cannot be improved which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Skip CI for some commits',
     ],
     correctIndex: 0,
@@ -404,7 +404,7 @@ export const cicdQuestions = [
     options: [
       'SLSA is a security framework defining levels of supply chain integrity, from basic build provenance (Level 1) to fully hermetic, reproducible builds with signed attestations (Level 4)',
       'SLSA is a logging framework for CI/CD',
-      'SLSA is only relevant for open-source projects',
+      'SLSA is only relevant for open-source projects and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'SLSA replaces all CI/CD testing',
     ],
     correctIndex: 0,
@@ -420,7 +420,7 @@ export const cicdQuestions = [
       'Artifacts are build outputs (Docker images, JAR files, binaries) stored for deployment; versioning enables traceability, rollback, and ensures the same artifact is deployed across environments',
       'Artifacts are source code files',
       'Artifacts should be rebuilt for each environment',
-      'Artifact versioning is only needed for production',
+      'Artifact versioning is only needed for production and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
     ],
     correctIndex: 0,
     explanation: 'Artifacts are the output of the build process: Docker images, JAR/WAR files, npm packages, compiled binaries, Helm charts. Versioning importance: (1) Traceability: know exactly what code is running in production (git SHA, version tag). (2) Rollback: revert to a previous artifact if deployment fails. (3) Consistency: the same artifact deploys to dev, staging, prod — no "works on my machine" issues. (4) Auditing: compliance requires knowing what was deployed when. Best practices: (1) Immutable artifacts: once built, never modify. Tag with version or git SHA. (2) Single artifact per build: do not rebuild for each environment — same artifact, different config. (3) Store in artifact repository: Docker registry (ECR, Docker Hub), package registry (npm, Maven), object storage (S3). (4) Semantic versioning: major.minor.patch for releases. (5) Retention policy: keep artifacts for rollback period, then clean up. Artifacts are built outputs, not source (B). Never rebuild for different environments (C). Versioning is needed everywhere (D).',

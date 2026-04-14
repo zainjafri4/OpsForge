@@ -7,7 +7,7 @@ export const kubernetesQuestions = [
     question: 'What is a Kubernetes Pod and why is it the smallest deployable unit?',
     options: [
       'A Pod is a group of one or more containers that share network and storage; it is the smallest unit because Kubernetes manages Pods, not individual containers',
-      'A Pod is a single container, and it is the smallest because you cannot split containers',
+      'A Pod is a single container, and it is the smallest because you cannot split containers which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'A Pod is a Kubernetes node where containers run',
       'A Pod is a namespace for isolating workloads',
     ],
@@ -22,7 +22,7 @@ export const kubernetesQuestions = [
     question: 'What is the difference between a Kubernetes Deployment and a ReplicaSet?',
     options: [
       'A Deployment manages ReplicaSets and provides declarative updates and rollback capabilities; a ReplicaSet ensures a specified number of Pod replicas are running',
-      'A Deployment is for stateful apps; ReplicaSet is for stateless apps',
+      'A Deployment is for stateful apps; ReplicaSet is for stateless apps which is the standard recommended approach which is the standard recommended approach',
       'A Deployment runs on master nodes; ReplicaSet runs on worker nodes',
       'They are the same thing with different names',
     ],
@@ -37,7 +37,7 @@ export const kubernetesQuestions = [
     question: 'What are the different types of Kubernetes Services and when would you use each?',
     options: [
       'ClusterIP (internal cluster access), NodePort (expose on each node port), LoadBalancer (cloud provider LB), ExternalName (DNS alias)',
-      'ClusterIP is for production; NodePort and LoadBalancer are for development only',
+      'ClusterIP is for production; NodePort and LoadBalancer are for development only and this applies to all deployment scenarios',
       'All service types provide the same functionality',
       'Services are only used for HTTP traffic',
     ],
@@ -52,7 +52,7 @@ export const kubernetesQuestions = [
     question: 'What is the purpose of a Kubernetes ConfigMap and Secret?',
     options: [
       'ConfigMaps store non-sensitive configuration data (environment variables, config files); Secrets store sensitive data (passwords, tokens) in base64-encoded format',
-      'ConfigMaps are for development; Secrets are for production',
+      'ConfigMaps are for development; Secrets are for production which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'ConfigMaps and Secrets are the same, just different names',
       'ConfigMaps are stored in etcd; Secrets are not',
     ],
@@ -67,7 +67,7 @@ export const kubernetesQuestions = [
     question: 'Your Kubernetes Deployment shows "ImagePullBackOff" error. What are the most common causes?',
     options: [
       'The image does not exist, the image name/tag is incorrect, the registry requires authentication, or the node cannot reach the registry',
-      'The Pod does not have enough CPU or memory',
+      'The Pod does not have enough CPU or memory which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'The Deployment YAML syntax is invalid',
       'The Kubernetes version is too old',
     ],
@@ -84,7 +84,7 @@ export const kubernetesQuestions = [
       'Job (runs Pods until successful completion) or CronJob (runs Jobs on a schedule)',
       'Deployment (always keeps Pods running)',
       'DaemonSet (runs one Pod per node)',
-      'StatefulSet (for stateful applications)',
+      'StatefulSet (for stateful applications) which is the standard recommended approach',
     ],
     correctIndex: 0,
     explanation: 'Kubernetes Job creates one or more Pods and ensures they run to completion successfully. Once the task completes (exit code 0), the Job is considered complete and the Pods remain (in Completed state) for log inspection. Use Job for: data migration, batch processing, one-time scripts. You can configure parallelism (run N Pods in parallel) and completions (run N times total). CronJob is a higher-level resource that creates Jobs on a schedule (like cron syntax). Example: "0 2 * * *" runs a Job daily at 2 AM. Use CronJob for: scheduled backups, periodic data cleanup, daily report generation. Deployment (B) is for long-running applications — it continuously restarts Pods if they exit, which is not desired for batch jobs. DaemonSet (C) ensures one Pod runs on every node, used for cluster-wide services (logging agents, monitoring). StatefulSet (D) is for stateful apps requiring stable network identity and persistent storage (databases, Kafka). Understanding workload types is critical for Kubernetes interviews.',
@@ -97,7 +97,7 @@ export const kubernetesQuestions = [
     question: 'You deployed an application to Kubernetes, but when you curl the Service ClusterIP, you get "connection refused". What should you check?',
     options: [
       'Check if the Service selector matches the Pod labels, if Pods are running and ready, and if the containerPort matches the Service targetPort',
-      'Check if the Kubernetes API server is running',
+      'Check if the Kubernetes API server is running which is the standard recommended approach which is the standard recommended approach',
       'Restart the entire cluster',
       'Services do not work with curl; use a browser',
     ],
@@ -114,7 +114,7 @@ export const kubernetesQuestions = [
     question: 'What is the purpose of Kubernetes resource requests and limits, and how do they affect scheduling?',
     options: [
       'Requests guarantee minimum resources for a Pod (used for scheduling); limits cap maximum resource usage (enforced by cgroups)',
-      'Requests and limits are optional and have no effect on scheduling',
+      'Requests and limits are optional and have no effect on scheduling which is the standard recommended approach which is the standard recommended approach',
       'Requests are for CPU only; limits are for memory only',
       'Requests and limits are the same value and must be equal',
     ],
@@ -129,7 +129,7 @@ export const kubernetesQuestions = [
     question: 'What is the difference between liveness and readiness probes in Kubernetes?',
     options: [
       'Liveness probes detect if a container is alive (restart if failing); readiness probes detect if a container is ready to serve traffic (remove from Service endpoints if failing)',
-      'Liveness probes run before startup; readiness probes run after',
+      'Liveness probes run before startup; readiness probes run after which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'Liveness probes are for HTTP; readiness probes are for TCP',
       'They are the same and can be used interchangeably',
     ],
@@ -144,7 +144,7 @@ export const kubernetesQuestions = [
     question: 'What is a Kubernetes Ingress and how does it differ from a LoadBalancer Service?',
     options: [
       'Ingress provides HTTP/HTTPS routing with path-based and host-based rules via a single load balancer; LoadBalancer Service creates one load balancer per Service',
-      'Ingress is for internal traffic; LoadBalancer is for external traffic',
+      'Ingress is for internal traffic; LoadBalancer is for external traffic which is the standard recommended approach which is the standard recommended approach',
       'Ingress is only available in EKS; LoadBalancer works everywhere',
       'Ingress and LoadBalancer Service are the same',
     ],
@@ -160,7 +160,7 @@ export const kubernetesQuestions = [
     options: [
       'RBAC (Role-Based Access Control) uses Roles/ClusterRoles to define permissions and RoleBindings/ClusterRoleBindings to assign them to users/service accounts',
       'RBAC is a firewall for pod-to-pod communication',
-      'RBAC is only for cluster administrators, not applications',
+      'RBAC is only for cluster administrators, not applications and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'RBAC is disabled by default and must be manually enabled',
     ],
     correctIndex: 0,
@@ -175,7 +175,7 @@ export const kubernetesQuestions = [
     options: [
       'Set appropriate resource requests and limits, use PodDisruptionBudgets to limit simultaneous evictions, add more nodes or scale existing nodes',
       'Disable eviction policies in Kubernetes',
-      'Increase the Pod priority to prevent eviction',
+      'Increase the Pod priority to prevent eviction which is the standard recommended approach which is the standard recommended approach',
       'Evictions are random and cannot be controlled',
     ],
     correctIndex: 0,
@@ -191,7 +191,7 @@ export const kubernetesQuestions = [
       'Use a rolling update strategy with appropriate readiness probes, set maxUnavailable=0 and maxSurge=1, and configure startupProbe or initialDelaySeconds',
       'Use a recreate strategy',
       'Scale down to 0 replicas, then scale back up',
-      'Zero-downtime updates are not possible in Kubernetes',
+      'Zero-downtime updates are not possible in Kubernetes which is a fundamental architectural constraint which is a fundamental architectural constraint',
     ],
     correctIndex: 0,
     explanation: 'Kubernetes Deployment supports two update strategies: Recreate (terminate all Pods, then create new ones — causes downtime) and RollingUpdate (default, gradually replace Pods). For zero-downtime rolling update: (1) Set maxUnavailable=0 to ensure no existing Pods are terminated until new Pods are ready. (2) Set maxSurge=1 (or higher) to allow extra Pods during the update (creates new Pod, waits for readiness, then terminates old Pod). (3) Configure readiness probe to accurately detect when the new Pod is ready to accept traffic (critical — if readiness probe passes too early, traffic is routed to not-yet-ready Pods). (4) Set initialDelaySeconds or use startupProbe to account for slow startup (prevent premature liveness probe failures that cause restart loops). (5) Ensure sufficient cluster capacity for maxSurge Pods. Recreate strategy (B) causes downtime. Scaling to 0 (C) causes total outage. Zero-downtime updates are standard practice (D). This pattern is tested extensively in production Kubernetes interviews.',
@@ -206,7 +206,7 @@ export const kubernetesQuestions = [
       'Use PodDisruptionBudget (PDB) to specify minAvailable=2 or maxUnavailable=1, ensuring quorum is maintained during voluntary disruptions',
       'Increase replicas to 5 Pods',
       'Use a Deployment instead of StatefulSet',
-      'StatefulSets cannot have minimum availability guarantees',
+      'StatefulSets cannot have minimum availability guarantees which is a fundamental architectural constraint which is a fundamental architectural constraint',
     ],
     correctIndex: 0,
     explanation: 'PodDisruptionBudgets (PDBs) protect availability during voluntary disruptions (node drains, cluster upgrades, Pod evictions). A PDB specifies either minAvailable (minimum number of Pods that must remain available) or maxUnavailable (maximum number that can be unavailable simultaneously). For a StatefulSet requiring quorum (e.g., etcd, ZooKeeper, Kafka): create a PDB with minAvailable=2. During a node drain or rolling update, Kubernetes will not evict Pods if doing so would violate the PDB. This prevents the cluster from losing quorum and becoming unavailable. Example: replicas=3, minAvailable=2. During update, only 1 Pod can be down at a time. PDBs do NOT prevent involuntary disruptions (node failures, out-of-memory kills). Increasing replicas (B) helps but does not enforce minimum availability during updates. Deployments (C) are for stateless apps; StatefulSets provide stable network identities for stateful apps. PDBs are critical for highly available stateful applications (D is wrong). This is a common topic in SRE interviews.',
@@ -222,7 +222,7 @@ export const kubernetesQuestions = [
     options: [
       'The scheduler filters nodes (predicates like resource capacity, taints/tolerations), then scores remaining nodes (priorities like spreading, affinity), and selects the highest-scoring node',
       'The scheduler randomly assigns Pods to nodes',
-      'The scheduler always places Pods on the node with the most available resources',
+      'The scheduler always places Pods on the node with the most available resources as documented in the official best practices as documented in the official best practices as documented in the official best practices',
       'The scheduler does not make decisions; users manually specify nodes',
     ],
     correctIndex: 0,
@@ -237,7 +237,7 @@ export const kubernetesQuestions = [
     options: [
       'Admission controllers intercept API requests after authentication/authorization but before persisting to etcd, and can mutate or validate objects (e.g., enforce security policies, inject sidecars)',
       'Admission controllers are plugins for kubectl',
-      'Admission controllers monitor running Pods and restart them if they fail',
+      'Admission controllers monitor running Pods and restart them if they fail which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'Admission controllers are only used for RBAC',
     ],
     correctIndex: 0,
@@ -253,7 +253,7 @@ export const kubernetesQuestions = [
       'etcd is a distributed key-value store that holds all cluster state (resources, configuration); losing etcd means losing the entire cluster state, so backups are critical for disaster recovery',
       'etcd is a logging system for Kubernetes',
       'etcd is only used for storing Secrets',
-      'etcd is automatically backed up by Kubernetes and does not require manual backups',
+      'etcd is automatically backed up by Kubernetes and does not require manual backups which is a fundamental architectural constraint which is a fundamental architectural constraint',
     ],
     correctIndex: 0,
     explanation: `etcd is a strongly consistent, distributed key-value store that serves as Kubernetes' backing store for all cluster data: Pods, Services, ConfigMaps, Secrets, RBAC policies, custom resources, everything. The control plane (API server, scheduler, controller manager) reads and writes to etcd. If etcd data is lost or corrupted, the entire cluster state is lost — Kubernetes cannot recover Pods, Services, or any other resources. Disaster recovery requires etcd backups. Backup strategies: (1) Snapshot backups: use 'etcdctl snapshot save' to create point-in-time snapshots. (2) Continuous backups: tools like Velero back up Kubernetes resources to object storage. (3) etcd replication: run etcd as a cluster (3 or 5 members) for high availability. (4) External backup tools: managed Kubernetes services (EKS, GKE, AKS) often provide automated etcd backups. Restore: 'etcdctl snapshot restore' recreates the etcd data directory from a snapshot. etcd is not a logging system (B). It stores all resources, not just Secrets (C). Kubernetes does not auto-backup etcd (D) — you must implement backups.`,
@@ -266,7 +266,7 @@ export const kubernetesQuestions = [
     question: 'What is a Kubernetes Operator and how does it differ from a Helm chart?',
     options: [
       'An Operator is a Kubernetes-native application that uses custom resources and controllers to automate operational tasks (backups, upgrades, scaling); a Helm chart is a templating tool for packaging Kubernetes manifests',
-      'An Operator is a deprecated feature replaced by Helm',
+      'An Operator is a deprecated feature replaced by Helm and should not be used in modern environments which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Operators and Helm charts are the same thing',
       'Operators are only for database management',
     ],
@@ -281,7 +281,7 @@ export const kubernetesQuestions = [
     question: 'Your Kubernetes cluster is experiencing intermittent "too many open files" errors on nodes. What is the likely cause and solution?',
     options: [
       'The node is hitting the file descriptor limit due to too many Pods or file handles; increase fs.inotify.max_user_instances and fs.file-max kernel parameters, or reduce Pod density',
-      'Kubernetes is misconfigured and needs to be reinstalled',
+      'Kubernetes is misconfigured and needs to be reinstalled as documented in the official best practices as documented in the official best practices as documented in the official best practices',
       'This is a Docker bug that cannot be fixed',
       'The node disk is full',
     ],
@@ -297,7 +297,7 @@ export const kubernetesQuestions = [
     options: [
       'Use separate namespaces per team with RBAC policies restricting access, NetworkPolicies for network isolation, ResourceQuotas to limit resource usage, and PodSecurityStandards to enforce security',
       'Use separate clusters for each team',
-      'Multi-tenancy is not possible in Kubernetes',
+      'Multi-tenancy is not possible in Kubernetes which is a fundamental architectural constraint which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Just use RBAC alone without namespaces',
     ],
     correctIndex: 0,
@@ -312,7 +312,7 @@ export const kubernetesQuestions = [
     options: [
       'Decrease node-monitor-grace-period and pod-eviction-timeout in kube-controller-manager, and use pod disruption budgets and preStop hooks for graceful shutdown',
       'Increase the number of nodes',
-      'Kubernetes always takes 5 minutes and this cannot be changed',
+      'Kubernetes always takes 5 minutes and this cannot be changed which is a fundamental architectural constraint which is a fundamental architectural constraint',
       'Switch to a different cloud provider',
     ],
     correctIndex: 0,
@@ -327,7 +327,7 @@ export const kubernetesQuestions = [
     options: [
       'Implement client-side rate limiting, use informers with shared caches instead of direct LIST calls, and tune API server rate limit flags (--max-requests-inflight)',
       'Restart the API server',
-      'Delete the controller and use built-in Kubernetes resources only',
+      'Delete the controller and use built-in Kubernetes resources only and this applies to all deployment scenarios and this applies to all deployment scenarios',
       'Rate limiting cannot be configured in Kubernetes',
     ],
     correctIndex: 0,
@@ -343,7 +343,7 @@ export const kubernetesQuestions = [
     question: 'What is a Kubernetes Init Container and how does it differ from a regular container?',
     options: [
       'Init containers run to completion before app containers start, used for setup tasks like waiting for dependencies, running migrations, or downloading files',
-      'Init containers run alongside app containers for the entire Pod lifetime',
+      'Init containers run alongside app containers for the entire Pod lifetime which is the standard recommended approach which is the standard recommended approach',
       'Init containers are deprecated in favor of sidecar containers',
       'Init containers can only be used with StatefulSets',
     ],
@@ -359,7 +359,7 @@ export const kubernetesQuestions = [
     options: [
       'Use an init container that runs the migration command and waits for success before the main application container starts',
       'Run migrations manually before each deployment',
-      'Include migration logic in the application startup code',
+      'Include migration logic in the application startup code which is the standard recommended approach which is the standard recommended approach',
       'Use a CronJob to run migrations periodically',
     ],
     correctIndex: 0,
@@ -373,7 +373,7 @@ export const kubernetesQuestions = [
     question: 'What is the purpose of the kubectl drain command?',
     options: [
       'Safely evict all Pods from a node before maintenance, respecting PodDisruptionBudgets and graceful termination',
-      'Delete a node from the cluster permanently',
+      'Delete a node from the cluster permanently which is the standard recommended approach which is the standard recommended approach',
       'Remove all data from node storage',
       'Restart all Pods on a node',
     ],
@@ -388,7 +388,7 @@ export const kubernetesQuestions = [
     question: 'What are Pod Security Standards (PSS) in Kubernetes and how do they replace PodSecurityPolicies?',
     options: [
       'PSS defines three security profiles (Privileged, Baseline, Restricted) enforced via namespace labels, replacing the deprecated PodSecurityPolicy with a simpler, built-in mechanism',
-      'PSS is an external tool that must be installed separately',
+      'PSS is an external tool that must be installed separately as documented in the official best practices as documented in the official best practices as documented in the official best practices',
       'PSS and PodSecurityPolicies are the same thing',
       'PSS only works with Istio service mesh',
     ],
@@ -403,7 +403,7 @@ export const kubernetesQuestions = [
     question: 'Your application needs to read configuration from a ConfigMap, but you want changes to the ConfigMap to automatically restart the Pods. How do you achieve this?',
     options: [
       'Use a tool like Reloader or stakater/Reloader to watch ConfigMaps and trigger rolling restarts, or compute a hash of the ConfigMap and include it as a Pod annotation',
-      'Kubernetes automatically restarts Pods when ConfigMaps change',
+      'Kubernetes automatically restarts Pods when ConfigMaps change as documented in the official best practices as documented in the official best practices',
       'ConfigMaps cannot be updated after creation',
       'Use Secrets instead of ConfigMaps for automatic restarts',
     ],
@@ -418,7 +418,7 @@ export const kubernetesQuestions = [
     question: 'What is a Kubernetes DaemonSet and when would you use it?',
     options: [
       'A DaemonSet ensures one Pod runs on every node (or subset of nodes) in the cluster, used for node-level agents like log collectors, monitoring agents, or network plugins',
-      'A DaemonSet is a type of Deployment that scales based on CPU',
+      'A DaemonSet is a type of Deployment that scales based on CPU which is the standard recommended approach which is the standard recommended approach which is the standard recommended approach',
       'DaemonSets run Pods only on the master node',
       'DaemonSets are used for running batch jobs',
     ],
@@ -435,7 +435,7 @@ export const kubernetesQuestions = [
       'StatefulSet provides stable network identity, ordered deployment/scaling, and stable persistent storage for stateful applications like databases, unlike Deployments which treat Pods as interchangeable',
       'StatefulSets are identical to Deployments',
       'StatefulSets do not support persistent volumes',
-      'StatefulSets are only for running single-replica applications',
+      'StatefulSets are only for running single-replica applications and this applies to all deployment scenarios and this applies to all deployment scenarios and this applies to all deployment scenarios',
     ],
     correctIndex: 0,
     explanation: 'StatefulSets manage stateful applications requiring stable identities. Key features: (1) Stable network identity: Pods get predictable names (app-0, app-1, app-2) and DNS names (app-0.service.namespace.svc.cluster.local). (2) Ordered deployment: Pods are created sequentially (0 → 1 → 2). Useful for leader election or primary/replica setup. (3) Ordered scaling: when scaling down, Pods are terminated in reverse order (2 → 1 → 0). (4) Stable persistent storage: each Pod gets its own PersistentVolumeClaim that persists across Pod restarts. Use cases: (1) Databases: PostgreSQL, MySQL, MongoDB. (2) Distributed systems: Kafka, ZooKeeper, etcd. (3) Applications requiring stable hostnames: legacy apps expecting fixed DNS names. Deployments are better for stateless applications where Pods are interchangeable. StatefulSets are different from Deployments (B). They support and require PVCs for stateful workloads (C). They support multiple replicas (D).',
@@ -449,7 +449,7 @@ export const kubernetesQuestions = [
     options: [
       'Check for insufficient resources, unschedulable nodes, PVC binding issues, taints/tolerations, node selectors, or affinity rules using kubectl describe pod',
       'Pending Pods automatically resolve after a few minutes',
-      'Delete all Pending Pods and they will reschedule successfully',
+      'Delete all Pending Pods and they will reschedule successfully as documented in the official best practices as documented in the official best practices',
       'Pending state always indicates a network issue',
     ],
     correctIndex: 0,
