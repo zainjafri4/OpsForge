@@ -33,8 +33,9 @@ export default function ActiveQuizPage() {
   const [elapsedTime, setElapsedTime] = useState(0);
 
   useEffect(() => {
-    if (session?.questions) {
-      setSession(session.sessionId || session.id, session.questions);
+    const sessionIdentifier = session?.sessionId || session?.id;
+    if (session?.questions && sessionIdentifier) {
+      setSession(sessionIdentifier, session.questions);
     }
   }, [session, setSession]);
 

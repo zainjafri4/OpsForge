@@ -11,7 +11,7 @@
 [![Prisma](https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white)]()
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)]()
 
-**300+ real interview questions · 12 topics · Easy / Medium / Hard · AWS focused**
+**335+ real interview questions · 12 topics · Easy / Medium / Hard · AWS focused**
 
 🎯 **No signup required to practice!** Take tests instantly and see your results.
 
@@ -194,7 +194,7 @@ OpsForge/
 │   │   │   ├── tests/        # Test session management
 │   │   │   └── topics/       # Topic & question management
 │   │   └── prisma/
-│   │       └── seed-data/    # 300+ interview questions
+│   │       └── seed-data/    # 335+ interview questions
 │   └── frontend/             # Next.js 14 App
 │       ├── app/
 │       │   ├── dashboard/    # Authenticated user pages
