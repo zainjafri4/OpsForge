@@ -11,7 +11,7 @@ import {
   HomeIcon, 
   BookOpenIcon, 
   ClipboardListIcon, 
-  ChartBarIcon,
+  BarChart,
   LogOutIcon,
   MoonIcon,
   SunIcon,
@@ -21,7 +21,7 @@ const navigation = [
   { name: 'Dashboard', href: '/dashboard', icon: HomeIcon },
   { name: 'Learn', href: '/learn', icon: BookOpenIcon },
   { name: 'Test', href: '/test', icon: ClipboardListIcon },
-  { name: 'Results', href: '/results', icon: ChartBarIcon },
+  { name: 'Results', href: '/results', icon: BarChart },
 ];
 
 export default function DashboardLayout({
