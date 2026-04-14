@@ -259,7 +259,7 @@ This project is open source and available under the [MIT License](LICENSE).
 ## 👤 Author
 
 **Zain Raza Jafri**  
-Full-Stack Developer & DevOps Engineer
+Cloud & DevOps Engineer
 
 - 🐙 GitHub: [@zainjafri4](https://github.com/zainjafri4)
 - 💼 LinkedIn: [zainjafri4](https://linkedin.com/in/zainjafri4)
