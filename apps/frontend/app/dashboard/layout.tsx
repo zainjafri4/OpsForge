@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/hooks/useAuth';
-import { getUserDisplayName, getUserInitials } from '@/lib/auth';
+import { getUserDisplayName, getUserInitials, getStoredAuth } from '@/lib/auth';
 import { Button } from '@/components/ui/button';
 import { 
   HomeIcon, 
@@ -33,15 +33,25 @@ export default function DashboardLayout({
   const pathname = usePathname();
   const { user, isAuthenticated, logout } = useAuth();
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
+  const [isHydrated, setIsHydrated] = useState(false);
 
   // Check if we're on the active quiz page (hide sidebar)
   const isQuizPage = pathname.includes('/test/') && pathname.split('/').length > 4;
 
+  // Wait for hydration before checking auth
   useEffect(() => {
-    if (!isAuthenticated) {
+    setIsHydrated(true);
+  }, []);
+
+  useEffect(() => {
+    if (!isHydrated) return;
+    
+    // Check localStorage directly to avoid zustand hydration race condition
+    const stored = getStoredAuth();
+    if (!isAuthenticated && !stored.accessToken) {
       router.push('/login');
     }
-  }, [isAuthenticated, router]);
+  }, [isAuthenticated, isHydrated, router]);
 
   // Dark mode initialization
   useEffect(() => {
@@ -59,8 +69,21 @@ export default function DashboardLayout({
     document.documentElement.classList.toggle('dark', newTheme === 'dark');
   };
 
+  // Show loading state while hydrating
+  if (!isHydrated) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    );
+  }
+
   if (!isAuthenticated || !user) {
-    return null;
+    // Check localStorage as fallback during hydration
+    const stored = getStoredAuth();
+    if (!stored.accessToken) {
+      return null;
+    }
   }
 
   return (

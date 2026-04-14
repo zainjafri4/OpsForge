@@ -188,9 +188,9 @@ export default function DashboardPage() {
             <div className="space-y-4">
               {progress.slice(0, 6).map((item) => {
                 const totalAttempted =
-                  item.easyAttempted + item.mediumAttempted + item.hardAttempted;
+                  (item.easyAttempted || 0) + (item.mediumAttempted || 0) + (item.hardAttempted || 0);
                 const totalCorrect =
-                  item.easyCorrect + item.mediumCorrect + item.hardCorrect;
+                  (item.easyCorrect || 0) + (item.mediumCorrect || 0) + (item.hardCorrect || 0);
                 const accuracy =
                   totalAttempted > 0 ? (totalCorrect / totalAttempted) * 100 : 0;
 

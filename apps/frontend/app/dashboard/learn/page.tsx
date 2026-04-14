@@ -17,13 +17,15 @@ export default function LearnPage() {
     );
   }
 
-  const groupedTopics = topics?.reduce((acc, topic) => {
-    if (!acc[topic.category]) {
-      acc[topic.category] = [];
-    }
-    acc[topic.category].push(topic);
-    return acc;
-  }, {} as Record<string, typeof topics>);
+  const groupedTopics = Array.isArray(topics) 
+    ? topics.reduce((acc, topic) => {
+        if (!acc[topic.category]) {
+          acc[topic.category] = [];
+        }
+        acc[topic.category].push(topic);
+        return acc;
+      }, {} as Record<string, typeof topics>)
+    : {};
 
   const categoryIcons: Record<string, string> = {
     DEVOPS: '🔧',

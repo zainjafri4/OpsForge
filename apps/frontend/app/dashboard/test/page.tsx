@@ -114,7 +114,7 @@ export default function TestConfigPage() {
         </CardHeader>
         <CardContent>
           <div className="flex flex-wrap gap-2 mb-4">
-            {topics?.map((topic) => (
+            {Array.isArray(topics) && topics.map((topic) => (
               <Badge
                 key={topic.id}
                 variant={selectedTopics.includes(topic.slug) ? 'default' : 'outline'}

@@ -36,7 +36,7 @@ export default function ResultsHistoryPage() {
         </Link>
       </div>
 
-      {!results || results.length === 0 ? (
+      {!results || !Array.isArray(results) || results.length === 0 ? (
         <Card>
           <CardContent className="pt-12 pb-12 text-center">
             <p className="text-gray-500 mb-4">No test results yet</p>
