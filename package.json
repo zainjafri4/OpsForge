@@ -3,10 +3,6 @@
   "version": "1.0.0",
   "description": "OpsForge - Forge Your Cloud, DevOps & SRE Interview Skills",
   "private": true,
-  "workspaces": [
-    "apps/backend",
-    "apps/frontend"
-  ],
   "scripts": {
     "dev:backend": "cd apps/backend && npm run start:dev",
     "dev:frontend": "cd apps/frontend && npm run dev",
