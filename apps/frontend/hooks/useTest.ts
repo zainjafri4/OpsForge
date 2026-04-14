@@ -22,6 +22,10 @@ export const useStartTest = () => {
     },
     onSuccess: (data) => {
       const sessionId = data.sessionId || data.id;
+      if (!sessionId) {
+        toast.error('Failed to get session ID');
+        return;
+      }
       setSession(sessionId, data.questions || []);
       router.push(`/dashboard/test/${sessionId}`);
     },
