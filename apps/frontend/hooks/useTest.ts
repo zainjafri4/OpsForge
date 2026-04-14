@@ -21,8 +21,9 @@ export const useStartTest = () => {
       return response.data;
     },
     onSuccess: (data) => {
-      setSession(data.id, data.questions || []);
-      router.push(`/test/${data.id}`);
+      const sessionId = data.sessionId || data.id;
+      setSession(sessionId, data.questions || []);
+      router.push(`/dashboard/test/${sessionId}`);
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message || 'Failed to start test');
@@ -78,7 +79,7 @@ export const useSubmitTest = () => {
       clearSession();
       queryClient.invalidateQueries({ queryKey: ['test-history'] });
       queryClient.invalidateQueries({ queryKey: ['progress'] });
-      router.push(`/results/${data.id}`);
+      router.push(`/dashboard/results/${data.id}`);
     },
     onError: (error: any) => {
       toast.error(error.response?.data?.message || 'Failed to submit test');

@@ -68,13 +68,15 @@ export interface Question {
 
 // Test Session
 export interface TestSession {
-  id: string;
-  userId: string;
+  id?: string;
+  sessionId?: string;
+  userId?: string;
   difficulty: Difficulty;
-  status: SessionStatus;
+  status?: SessionStatus;
   startedAt: string;
   completedAt?: string;
   totalQ: number;
+  answeredCount?: number;
   questions?: Question[];
 }
 

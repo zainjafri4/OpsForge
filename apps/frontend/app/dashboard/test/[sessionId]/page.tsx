@@ -34,7 +34,7 @@ export default function ActiveQuizPage() {
 
   useEffect(() => {
     if (session?.questions) {
-      setSession(session.id, session.questions);
+      setSession(session.sessionId || session.id, session.questions);
     }
   }, [session, setSession]);
 
