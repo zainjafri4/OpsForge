@@ -134,7 +134,7 @@ export const linuxQuestions = [
       'Context switching only occurs between processes, never between threads of the same process',
     ],
     correctIndex: 0,
-    explanation: 'In Linux, the distinction is crucial for DevOps performance tuning. A process is an independent execution unit with its own virtual address space, file descriptors, and resources. A thread (also called a Light Weight Process in Linux) shares the address space, file descriptors, and heap with other threads in the same process but has its own stack, registers, and thread-local storage. The kernel uses the same task_struct internally for both, but threads share the mm_struct (memory descriptor). Context switching involves: (1) saving the current process CPU registers to its kernel stack, (2) switching page tables (expensive — requires TLB flush for full process switch), (3) restoring the next process registers. Thread context switches within the same process are cheaper because page tables don\'t need switching. Excessive context switching (visible via vmstat, cs column) degrades performance. Tools to observe: /proc/[pid]/status shows Threads count, perf stat shows context-switches.',
+    explanation: `In Linux, the distinction is crucial for DevOps performance tuning. A process is an independent execution unit with its own virtual address space, file descriptors, and resources. A thread (also called a Light Weight Process in Linux) shares the address space, file descriptors, and heap with other threads in the same process but has its own stack, registers, and thread-local storage. The kernel uses the same task_struct internally for both, but threads share the mm_struct (memory descriptor). Context switching involves: (1) saving the current process CPU registers to its kernel stack, (2) switching page tables (expensive — requires TLB flush for full process switch), (3) restoring the next process registers. Thread context switches within the same process are cheaper because page tables don't need switching. Excessive context switching (visible via vmstat, cs column) degrades performance. Tools to observe: /proc/[pid]/status shows Threads count, perf stat shows context-switches.`,
     tags: ['linux', 'processes', 'threads', 'kernel', 'performance'],
   },
   {
@@ -158,7 +158,7 @@ export const linuxQuestions = [
     type: 'THEORY' as const,
     question: 'What is systemd and how does it differ from the traditional SysV init system?',
     options: [
-      'systemd is a modern init system (PID 1) with parallel service startup, socket activation, journald logging, and declarative unit files, unlike SysV\'s sequential shell scripts',
+      `systemd is a modern init system (PID 1) with parallel service startup, socket activation, journald logging, and declarative unit files, unlike SysV's sequential shell scripts`,
       'systemd is a security daemon that monitors system calls — SysV init is the actual process manager',
       'systemd and SysV init are equivalent; systemd is just a renamed version for newer kernels',
       'systemd only manages network interfaces; SysV init handles all other services',
@@ -171,15 +171,15 @@ export const linuxQuestions = [
     topicSlug: 'linux-shell',
     difficulty: 'MEDIUM' as const,
     type: 'THEORY' as const,
-    question: 'In a shell script, what is the difference between $(), backticks, and '${}` for variable expansion?',
+    question: `In a shell script, what is the difference between $(), backticks, and '\${}\` for variable expansion?`,
     options: [
-      '$() is command substitution (preferred, nestable); backticks are older command substitution (not nestable); ${} is variable expansion with optional modifiers',
-      '$() runs commands in a subshell; backticks run in the current shell; ${} is arithmetic expansion',
+      `$() is command substitution (preferred, nestable); backticks are older command substitution (not nestable); \${} is variable expansion with optional modifiers`,
+      `$() runs commands in a subshell; backticks run in the current shell; \${} is arithmetic expansion`,
       'All three are identical in bash — they exist only for historical compatibility',
-      '$() is for arrays; backticks are for strings; ${} is for integers only',
+      `$() is for arrays; backticks are for strings; \${} is for integers only`,
     ],
     correctIndex: 0,
-    explanation: 'These are three distinct mechanisms: $() is modern command substitution — it captures the stdout of a command: VERSION=$(cat /etc/os-release | grep VERSION_ID). It is nestable: INNER=$(echo $(date +%Y)). This is the preferred form in modern scripts. Backticks (`command') are the legacy form of command substitution from original Bourne shell. They work identically to $() but cannot be nested cleanly: OLD='cat /etc/hostname`. Avoid in new scripts. ${} is variable expansion — it evaluates a variable and allows modifiers: ${VAR:-default} (use default if unset), ${VAR:?error} (fail with error if unset), ${VAR#prefix} (remove prefix), ${VAR%suffix} (remove suffix), ${#VAR} (string length), ${VAR/old/new} (substitution). Example: FILE=config.tar.gz; echo ${FILE%.gz} outputs config.tar. Mastering these is key to writing robust DevOps automation scripts.',
+    explanation: `These are three distinct mechanisms: $() is modern command substitution — it captures the stdout of a command: VERSION=$(cat /etc/os-release | grep VERSION_ID). It is nestable: INNER=$(echo $(date +%Y)). This is the preferred form in modern scripts. Backticks (\`command') are the legacy form of command substitution from original Bourne shell. They work identically to $() but cannot be nested cleanly: OLD='cat /etc/hostname\`. Avoid in new scripts. \${} is variable expansion — it evaluates a variable and allows modifiers: \${VAR:-default} (use default if unset), \${VAR:?error} (fail with error if unset), \${VAR#prefix} (remove prefix), \${VAR%suffix} (remove suffix), \${#VAR} (string length), \${VAR/old/new} (substitution). Example: FILE=config.tar.gz; echo \${FILE%.gz} outputs config.tar. Mastering these is key to writing robust DevOps automation scripts.`,
     tags: ['linux', 'shell', 'scripting', 'bash', 'variables'],
   },
   {
@@ -201,7 +201,7 @@ export const linuxQuestions = [
     topicSlug: 'linux-shell',
     difficulty: 'MEDIUM' as const,
     type: 'THEORY' as const,
-    question: 'What does "sed -i 's/old/new/g' file.txt" do, and what does the -i flag mean?',
+    question: `What does "sed -i 's/old/new/g' file.txt" do, and what does the -i flag mean?`,
     options: [
       'It replaces all occurrences of "old" with "new" in file.txt in-place (editing the file directly), where -i means in-place editing',
       'It creates an interactive sed session where you can type replacements manually, -i means interactive',
@@ -209,7 +209,7 @@ export const linuxQuestions = [
       'It replaces "old" with "new" and prints to stdout, -i means invert the match',
     ],
     correctIndex: 0,
-    explanation: 'sed (stream editor) is a powerful text transformation tool. Breakdown: -i = in-place (edit the file directly rather than printing to stdout). On macOS, -i requires an extension argument: -i ''. s/old/new/g = substitute command: s = substitute, /old/ = pattern to match (regex), /new/ = replacement, /g = global flag (replace ALL occurrences on each line, not just the first). Without g, only the first match per line is replaced. Examples: sed -i 's/localhost/0.0.0.0/g' config.ini — change all hostnames. sed -i '/^#/d' file.txt — delete all comment lines. sed -i '3d' file.txt — delete line 3. sed -i 's/\\bfoo\\b/bar/g' — whole word replacement. Always back up before sed -i in production: sed -i.bak 's/old/new/g' file creates file.bak first. Pair with grep -n to find lines before editing.',
+    explanation: `sed (stream editor) is a powerful text transformation tool. Breakdown: -i = in-place (edit the file directly rather than printing to stdout). On macOS, -i requires an extension argument: -i ''. s/old/new/g = substitute command: s = substitute, /old/ = pattern to match (regex), /new/ = replacement, /g = global flag (replace ALL occurrences on each line, not just the first). Without g, only the first match per line is replaced. Examples: sed -i 's/localhost/0.0.0.0/g' config.ini — change all hostnames. sed -i '/^#/d' file.txt — delete all comment lines. sed -i '3d' file.txt — delete line 3. sed -i 's/\\bfoo\\b/bar/g' — whole word replacement. Always back up before sed -i in production: sed -i.bak 's/old/new/g' file creates file.bak first. Pair with grep -n to find lines before editing.`,
     tags: ['linux', 'sed', 'text-processing', 'shell-scripting'],
   },
 
@@ -256,7 +256,7 @@ export const linuxQuestions = [
       'This indicates a kernel bug — reboot the server immediately and apply kernel patches',
     ],
     correctIndex: 0,
-    explanation: 'This describes classic I/O bound performance degradation. Load average counts BOTH running processes AND processes in uninterruptible sleep (D state — waiting for I/O). A load of 40 on 8 cores means ~32 extra processes stuck waiting for I/O. High iowait (85%) in CPU breakdown confirms: CPUs are idle but processes can\'t proceed because they\'re waiting for disk. Diagnosis steps: (1) iostat -xz 1 — shows per-disk utilization, await (avg wait time), %util. If a disk shows 100% util and high await (>20ms for SSD, >50ms for HDD) it\'s saturated. (2) iotop -o — shows real-time per-process I/O. Find the culprit. (3) lsof +D /path — see what files a path has open. (4) cat /proc/[pid]/io — process I/O counters. (5) vmstat 1 — check bi (blocks in) and bo (blocks out). Solutions: upgrade disk tier (HDD→SSD→NVMe), add caching (Redis/Varnish), tune application buffering, check for log storms or backup jobs running.',
+    explanation: `This describes classic I/O bound performance degradation. Load average counts BOTH running processes AND processes in uninterruptible sleep (D state — waiting for I/O). A load of 40 on 8 cores means ~32 extra processes stuck waiting for I/O. High iowait (85%) in CPU breakdown confirms: CPUs are idle but processes can't proceed because they're waiting for disk. Diagnosis steps: (1) iostat -xz 1 — shows per-disk utilization, await (avg wait time), %util. If a disk shows 100% util and high await (>20ms for SSD, >50ms for HDD) it's saturated. (2) iotop -o — shows real-time per-process I/O. Find the culprit. (3) lsof +D /path — see what files a path has open. (4) cat /proc/[pid]/io — process I/O counters. (5) vmstat 1 — check bi (blocks in) and bo (blocks out). Solutions: upgrade disk tier (HDD→SSD→NVMe), add caching (Redis/Varnish), tune application buffering, check for log storms or backup jobs running.`,
     tags: ['linux', 'performance', 'io', 'troubleshooting', 'iostat', 'iotop'],
   },
   {
@@ -286,7 +286,7 @@ export const linuxQuestions = [
       'Use find with -newer flag to find recently modified files and process them',
     ],
     correctIndex: 0,
-    explanation: 'Building a robust file processor requires several Linux primitives: (1) inotifywait (from inotify-tools) — event-driven, zero polling overhead: inotifywait -m -e close_write /watch/dir. Triggers on file creation/modification, no busy-waiting. (2) Idempotency via a processed log: PROCESSED_LOG=/var/lib/processor/done.log. Before processing, check if filename is in log. After success, append to log. (3) flock for exclusion: exec 200>/var/lock/processor.lock; flock -x 200 prevents two script instances running concurrently (important for restarts). (4) Atomic operations: mv source dest within the same filesystem is atomic — use mv to a "processing" directory, then to "done" on success. This prevents partial processing. (5) Signal handling: trap 'cleanup' SIGTERM SIGINT to handle graceful shutdown. The naive ls+sleep approach (B) misses files created and deleted quickly. cron (C) doesn\'t deduplicate. find -newer (D) has race conditions. Production file processors often use this pattern for ETL pipelines.',
+    explanation: `Building a robust file processor requires several Linux primitives: (1) inotifywait (from inotify-tools) — event-driven, zero polling overhead: inotifywait -m -e close_write /watch/dir. Triggers on file creation/modification, no busy-waiting. (2) Idempotency via a processed log: PROCESSED_LOG=/var/lib/processor/done.log. Before processing, check if filename is in log. After success, append to log. (3) flock for exclusion: exec 200>/var/lock/processor.lock; flock -x 200 prevents two script instances running concurrently (important for restarts). (4) Atomic operations: mv source dest within the same filesystem is atomic — use mv to a "processing" directory, then to "done" on success. This prevents partial processing. (5) Signal handling: trap 'cleanup' SIGTERM SIGINT to handle graceful shutdown. The naive ls+sleep approach (B) misses files created and deleted quickly. cron (C) doesn't deduplicate. find -newer (D) has race conditions. Production file processors often use this pattern for ETL pipelines.`,
     tags: ['linux', 'shell-scripting', 'inotify', 'automation', 'idempotency'],
   },
   {
@@ -295,13 +295,13 @@ export const linuxQuestions = [
     type: 'SCENARIO' as const,
     question: 'You need to extract the 5th column from a CSV file where columns are separated by commas, and print only unique values sorted alphabetically. Which command pipeline achieves this?',
     options: [
-      'awk -F',' '{print $5}' file.csv | sort | uniq',
-      'cut -d',' -f5 file.csv | sort -u',
+      `awk -F',' '{print $5}' file.csv | sort | uniq`,
+      `cut -d',' -f5 file.csv | sort -u`,
       'Both A and B are correct — cut is simpler but awk handles edge cases better',
-      'grep -o '[^,]*,[^,]*,[^,]*,[^,]*,\\([^,]*\\)' file.csv | sort | uniq',
+      `grep -o '[^,]*,[^,]*,[^,]*,[^,]*,\\([^,]*\\)' file.csv | sort | uniq`,
     ],
     correctIndex: 2,
-    explanation: 'Both options A and B produce the correct result but have different strengths. cut -d',' -f5 — uses comma as delimiter (-d',') and extracts field 5 (-f5). sort -u combines sorting and deduplication in one step. This is simpler and faster for straightforward CSVs. awk -F',' '{print $5}' — sets field separator to comma and prints column 5. sort | uniq is the traditional deduplication pipeline. awk is more powerful because: it handles quoted fields with commas (though not by default), you can add conditions (NR>1 to skip headers), apply transformations before printing. For production: if the CSV has a header row, skip it with: awk -F',' 'NR>1{print $5}' file.csv | sort -u. If values may contain quoted commas, use a proper CSV parser like python -c "import csv,sys; ..." instead. The sort | uniq pattern is so common in Linux it\'s considered idiomatic.',
+    explanation: `Both options A and B produce the correct result but have different strengths. cut -d',' -f5 — uses comma as delimiter (-d',') and extracts field 5 (-f5). sort -u combines sorting and deduplication in one step. This is simpler and faster for straightforward CSVs. awk -F',' '{print $5}' — sets field separator to comma and prints column 5. sort | uniq is the traditional deduplication pipeline. awk is more powerful because: it handles quoted fields with commas (though not by default), you can add conditions (NR>1 to skip headers), apply transformations before printing. For production: if the CSV has a header row, skip it with: awk -F',' 'NR>1{print $5}' file.csv | sort -u. If values may contain quoted commas, use a proper CSV parser like python -c "import csv,sys; ..." instead. The sort | uniq pattern is so common in Linux it's considered idiomatic.`,
     tags: ['linux', 'awk', 'cut', 'text-processing', 'shell-scripting'],
   },
   {
@@ -316,7 +316,7 @@ export const linuxQuestions = [
       'Manages firewall rules for hostname-based access control',
     ],
     correctIndex: 0,
-    explanation: '/etc/hosts is a local hostname resolution file that takes precedence over DNS (by default — controlled by /etc/nsswitch.conf "hosts: files dns" ordering). Format: IP_ADDRESS HOSTNAME ALIAS. DevOps use cases: (1) Local development — map app.local to 127.0.0.1 so developers can test with production-like URLs. (2) Testing DNS changes — before propagating a DNS change, test by adding the new IP in /etc/hosts. (3) Container networking — Docker containers' /etc/hosts is automatically populated with container names and service aliases. (4) Emergency override — during a DNS outage, temporarily hardcode critical service IPs. (5) Kubernetes CoreDDS — pods get cluster service names resolved via /etc/hosts injection. (6) Block domains — map ad/tracking domains to 0.0.0.0. Important: changes take effect immediately (no reload needed) but only on that host. For Kubernetes pods, use hostAliases in pod spec instead.',
+    explanation: `/etc/hosts is a local hostname resolution file that takes precedence over DNS (by default — controlled by /etc/nsswitch.conf "hosts: files dns" ordering). Format: IP_ADDRESS HOSTNAME ALIAS. DevOps use cases: (1) Local development — map app.local to 127.0.0.1 so developers can test with production-like URLs. (2) Testing DNS changes — before propagating a DNS change, test by adding the new IP in /etc/hosts. (3) Container networking — Docker containers' /etc/hosts is automatically populated with container names and service aliases. (4) Emergency override — during a DNS outage, temporarily hardcode critical service IPs. (5) Kubernetes CoreDDS — pods get cluster service names resolved via /etc/hosts injection. (6) Block domains — map ad/tracking domains to 0.0.0.0. Important: changes take effect immediately (no reload needed) but only on that host. For Kubernetes pods, use hostAliases in pod spec instead.`,
     tags: ['linux', 'networking', 'dns', 'hosts', 'devops'],
   },
   {
@@ -392,6 +392,6 @@ export const linuxQuestions = [
     ],
     correctIndex: 0,
     explanation: 'This tests depth of knowledge with fundamental Unix tools. Systematic approach: (1) /proc/loadavg — format: "1min 5min 15min running/total_threads last_pid". High load with declining trend (15min > 5min > 1min) means problem is resolving. Opposite means worsening. (2) vmstat 1 5 — columns: r (runnable), b (blocked on I/O), swpd (swap used), us/sy/id/wa (CPU breakdown), bi/bo (block I/O). High wa = I/O bound. High sy = kernel overhead. High r with low id = CPU bound. (3) ps aux --sort=-%mem or --sort=-%cpu — sort by resource usage. Check STAT column: D = uninterruptible sleep (I/O wait), Z = zombie, R = running, S = sleeping. (4) /proc/meminfo — MemAvailable, SwapUsed, Dirty, Writeback tell the memory story. (5) /proc/net/tcp — socket states in hex. (6) /proc/[pid]/fd/ — count open FDs. (7) netstat -s — TCP retransmit counters indicate network issues. This disciplined approach works even on severely restricted systems and shows deep Linux knowledge.',
-    tags: ['linux', 'performance', 'proc', 'vmstat', 'troubleshooting`, 'investigation'],
+    tags: ['linux', 'performance', 'proc', 'vmstat', 'troubleshooting', 'investigation'],
   },
 ];
