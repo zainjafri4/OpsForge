@@ -175,7 +175,7 @@ export default function Home() {
       <footer className="border-t border-gray-200 dark:border-gray-800 py-12 mt-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-600 dark:text-gray-400">
           <p className="mb-2">
-            Built with ❤️ by{' '}
+            Built by{' '}
             <a
               href="https://linkedin.com/in/zainjafri4"
               target="_blank"
