@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
 import Link from 'next/link';
 import { useStartPublicTest, usePublicTopics } from '@/hooks/usePublicApi';
@@ -12,7 +12,7 @@ import { PlayIcon, ArrowLeftIcon, ClockIcon, TimerIcon, ZapIcon } from 'lucide-r
 
 type TestMode = 'PRACTICE' | 'TIMED' | 'MOCK_INTERVIEW';
 
-export default function PublicTestConfigPage() {
+function PublicTestConfigContent() {
   const searchParams = useSearchParams();
   const preselectedTopic = searchParams.get('topic');
   const preselectedDifficulty = searchParams.get('difficulty') as Difficulty | null;
@@ -313,5 +313,17 @@ export default function PublicTestConfigPage() {
         </Card>
       </div>
     </div>
+  );
+}
+
+export default function PublicTestConfigPage() {
+  return (
+    <Suspense fallback={
+      <div className="min-h-screen flex items-center justify-center bg-gray-50 dark:bg-gray-950">
+        <div className="text-gray-500">Loading...</div>
+      </div>
+    }>
+      <PublicTestConfigContent />
+    </Suspense>
   );
 }
