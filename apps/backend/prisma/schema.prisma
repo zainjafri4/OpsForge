@@ -1,0 +1,143 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id           String   @id @default(uuid())
+  email        String   @unique
+  username     String   @unique
+  firstName    String
+  lastName     String
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+  refreshToken String?
+
+  testSessions TestSession[]
+  progress     UserProgress[]
+}
+
+model Topic {
+  id          String       @id @default(uuid())
+  slug        String       @unique
+  title       String
+  description String
+  icon        String
+  category    Category
+  questions   Question[]
+  progress    UserProgress[]
+}
+
+enum Category {
+  DEVOPS
+  AWS
+  SRE
+  CICD
+  CONTAINERS
+  IaC
+  OBSERVABILITY
+}
+
+model Question {
+  id           String       @id @default(uuid())
+  topicId      String
+  topic        Topic        @relation(fields: [topicId], references: [id])
+  difficulty   Difficulty
+  type         QuestionType
+  question     String
+  options      String[]
+  correctIndex Int
+  explanation  String
+  tags         String[]
+
+  testAnswers      TestAnswer[]
+  sessionQuestions SessionQuestion[]
+}
+
+enum Difficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum QuestionType {
+  THEORY
+  SCENARIO
+}
+
+model TestSession {
+  id          String        @id @default(uuid())
+  userId      String
+  user        User          @relation(fields: [userId], references: [id])
+  difficulty  Difficulty
+  topicFilter String[]
+  typeFilter  String?
+  status      SessionStatus @default(IN_PROGRESS)
+  startedAt   DateTime      @default(now())
+  completedAt DateTime?
+  totalQ      Int
+  answers     TestAnswer[]
+  result      TestResult?
+  sessionQuestions SessionQuestion[]
+}
+
+enum SessionStatus {
+  IN_PROGRESS
+  COMPLETED
+}
+
+model SessionQuestion {
+  id             String      @id @default(uuid())
+  sessionId      String
+  session        TestSession @relation(fields: [sessionId], references: [id])
+  questionId     String
+  question       Question    @relation(fields: [questionId], references: [id])
+  shuffledOptions String[]
+  shuffledCorrectIndex Int
+  position       Int
+}
+
+model TestAnswer {
+  id            String      @id @default(uuid())
+  sessionId     String
+  session       TestSession @relation(fields: [sessionId], references: [id])
+  questionId    String
+  question      Question    @relation(fields: [questionId], references: [id])
+  selectedIndex Int?
+  isCorrect     Boolean
+  answeredAt    DateTime    @default(now())
+}
+
+model TestResult {
+  id           String      @id @default(uuid())
+  sessionId    String      @unique
+  session      TestSession @relation(fields: [sessionId], references: [id])
+  score        Int
+  correctCount Int
+  wrongCount   Int
+  skippedCount Int
+  timeTaken    Int
+  createdAt    DateTime    @default(now())
+}
+
+model UserProgress {
+  id               String    @id @default(uuid())
+  userId           String
+  user             User      @relation(fields: [userId], references: [id])
+  topicId          String
+  topic            Topic     @relation(fields: [topicId], references: [id])
+  easyAttempted    Int       @default(0)
+  easyCorrect      Int       @default(0)
+  mediumAttempted  Int       @default(0)
+  mediumCorrect    Int       @default(0)
+  hardAttempted    Int       @default(0)
+  hardCorrect      Int       @default(0)
+  lastAttemptedAt  DateTime?
+
+  @@unique([userId, topicId])
+}

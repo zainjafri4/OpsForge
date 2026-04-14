@@ -1,0 +1,19 @@
+{
+  "name": "opsforge",
+  "version": "1.0.0",
+  "description": "OpsForge - Forge Your Cloud, DevOps & SRE Interview Skills",
+  "private": true,
+  "workspaces": [
+    "apps/backend",
+    "apps/frontend"
+  ],
+  "scripts": {
+    "dev:backend": "cd apps/backend && npm run start:dev",
+    "dev:frontend": "cd apps/frontend && npm run dev",
+    "build:backend": "cd apps/backend && npm run build",
+    "build:frontend": "cd apps/frontend && npm run build",
+    "db:up": "docker-compose up -d",
+    "db:seed": "cd apps/backend && npx prisma db seed",
+    "db:migrate": "cd apps/backend && npx prisma migrate dev"
+  }
+}
