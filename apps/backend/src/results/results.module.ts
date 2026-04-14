@@ -5,6 +5,6 @@ import { PublicResultsController } from './public-results.controller';
 
 @Module({
   providers: [ResultsService],
-  controllers: [ResultsController, PublicResultsController],
+  controllers: [PublicResultsController, ResultsController],
 })
 export class ResultsModule {}

@@ -9,12 +9,18 @@ export const useQuizStore = create<QuizState>((set) => ({
   startTime: 0,
 
   setSession: (sessionId: string, questions: Question[]) => {
-    set({
-      sessionId,
-      questions,
-      currentQuestionIndex: 0,
-      answers: new Map(),
-      startTime: Date.now(),
+    set((state) => {
+      // Don't reset if we already have this session loaded
+      if (state.sessionId === sessionId && state.questions.length > 0) {
+        return state;
+      }
+      return {
+        sessionId,
+        questions,
+        currentQuestionIndex: 0,
+        answers: new Map(),
+        startTime: Date.now(),
+      };
     });
   },
 

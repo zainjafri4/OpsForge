@@ -5,7 +5,7 @@ import { PublicTopicsController } from './public-topics.controller';
 
 @Module({
   providers: [TopicsService],
-  controllers: [TopicsController, PublicTopicsController],
+  controllers: [PublicTopicsController, TopicsController],
   exports: [TopicsService],
 })
 export class TopicsModule {}
