@@ -68,7 +68,7 @@ export default function Home() {
           transition={{ duration: 0.5, delay: 0.2 }}
           className="text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-3xl mx-auto"
         >
-          Master 300+ real interview questions covering AWS, Kubernetes, Terraform, CI/CD, Security, and more
+          Master 500+ real interview questions covering AWS, Kubernetes, Terraform, CI/CD, Security, and more
         </motion.p>
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -109,7 +109,7 @@ export default function Home() {
           className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-gray-600 dark:text-gray-400"
         >
           <div>
-            <span className="font-bold text-indigo-600 dark:text-indigo-400">300+</span>{' '}
+            <span className="font-bold text-indigo-600 dark:text-indigo-400">500+</span>{' '}
             Questions
           </div>
           <div>
